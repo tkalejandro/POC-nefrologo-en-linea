@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { Logo, MenuPages } from './components';
+import AccountMenu from './components/AccountMenu/AccountMenu';
 
 /**
  * Header. It will contain all the navigation from pages to account pages.
@@ -16,6 +17,7 @@ const Header = () => {
         <Toolbar disableGutters>
           <Logo />
           <MenuPages />
+          <AccountMenu />
         </Toolbar>
       </Container>
     </AppBar>
