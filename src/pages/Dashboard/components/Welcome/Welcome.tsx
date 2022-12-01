@@ -10,7 +10,7 @@ import React from 'react'
  */
 const Welcome = () => {
   return (
-    <Box sx={ (theme) => ({boxShadow: 1, background: theme.palette.primary.main, height: 600})}>
+    <Box sx={ (theme) => ({boxShadow: 1, background: theme.palette.secondary.main, height: 600})}>
         <Typography variant="h1">
             Hello Mrs Yulia
         </Typography>
