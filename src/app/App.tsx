@@ -4,13 +4,13 @@ import { lightTheme } from '../theme';
 import './App.css';
 import { Footer, Header, Main } from './components';
 
-const App = () : JSX.Element => {
+const App = (): JSX.Element => {
   return (
     <ThemeProvider theme={lightTheme}>
       <Header />
       <Main />
       <Footer />
-      </ThemeProvider>
+    </ThemeProvider>
   );
 }
 
