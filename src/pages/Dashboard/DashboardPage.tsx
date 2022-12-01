@@ -1,5 +1,6 @@
 import { Grid, Box, styled, Paper } from '@mui/material'
 import React from 'react'
+import { Welcome } from './components';
 
 /**
  * Users Dashboard
@@ -38,7 +39,9 @@ const DashboardPage = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <Item> Hello user</Item>
+          <Item>
+            <Welcome />
+          </Item>
         </Grid>
         <Grid item xs={12} md={4}>
           <Item> schedule an appointment</Item>
