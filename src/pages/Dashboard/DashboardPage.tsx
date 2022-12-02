@@ -23,6 +23,8 @@ const DashboardPage = () => {
    * 
    * Material UI tips:  DIV are now BOX, P are now Typography. Each one has special properties, there is almost no need to write fontSizes colors, etc etc. Is all inbuilt and can be call in the component
    * 
+   * Noramlly you can target the colors primary , secondary directly (will have contrast text automatically) or targeting via theme.palette.primary...  you can find the dark light and contrast text version
+   * 
    * MAYBE WE NEED TO EXPLORE COOL DASHBOARD IDEAS. Keep it simple to the GRID. The main goal is to understand MATERIAL UI.
    */
 
@@ -39,9 +41,7 @@ const DashboardPage = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <Item>
             <Welcome />
-          </Item>
         </Grid>
         <Grid item xs={12} md={4}>
           <Item> schedule an appointment</Item>

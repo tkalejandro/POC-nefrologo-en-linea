@@ -1,5 +1,4 @@
-import { Typography } from '@mui/material'
-import { Box } from '@mui/system'
+import {  Button, Typography, Box } from '@mui/material'
 import React from 'react'
 
 //RAFCE
@@ -10,10 +9,13 @@ import React from 'react'
  */
 const Welcome = () => {
   return (
-    <Box sx={ (theme) => ({boxShadow: 1, background: theme.palette.secondary.main, height: 600})}>
+    <Box sx={ (theme) => ({boxShadow: 1, backgroundColor: theme.palette.secondary.main, height: 600})}>
         <Typography variant="h1">
-            Hello Mrs Yulia
+            Hello Yulia
         </Typography>
+        <Button color="primary" variant="outlined">
+          you can always hover from the btn , or attribute to get help. 
+        </Button>
     </Box>
   )
 }
