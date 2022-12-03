@@ -30,7 +30,7 @@ export enum SaludToolsEPS {
 export enum SaludToolsEventType {
     Patient = 'PATIENT',
     Appointment = 'APPOINTMENT',
-    Medicine = 'Medicine'
+    Medicine = 'MEDICINE'
 }
 
 /**
@@ -42,4 +42,34 @@ export enum SaludToolsActionType {
     Update = 'UPDATE',
     Search = 'SEARCH',
     Delete = 'DELETE'
+}
+
+/**
+ * Modality of the service
+ */
+export enum SaludToolsModality {
+    Conventional = "CONVENTIONAL",
+    Telemedicine = "TELEMEDICINE",
+    Domiciliary = "DOMICILIARY"
+}
+
+/**
+ * State of the appointment
+ */
+export enum SaludToolsStateAppointment {
+    Pending = "PENDING"
+}
+
+/**
+ * State of confirmation by the patient.
+ */
+export enum SaludToolsNotificationState {
+    Attend = "ATTEND"
+}
+
+/**
+ * Clinic where the appointment will take
+ */
+export enum SaludToolsClinic {
+    Clinic = 1
 }

@@ -1,9 +1,9 @@
 import { Patient } from ".";
 
 /**
- * Same as Patient with extra properties
+ * Same as Patient with extra properties. Used in the body response when reading patient
  */
-interface PatientResponse extends Patient {
+interface PatientReadBody extends Patient {
     /**
      * Id of Patient. Seems no use.
      */
@@ -15,4 +15,4 @@ interface PatientResponse extends Patient {
     pageable: null
 }
 
-export default PatientResponse
+export default PatientReadBody

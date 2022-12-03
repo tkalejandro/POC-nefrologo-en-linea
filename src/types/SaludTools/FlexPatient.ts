@@ -1,7 +1,7 @@
 import { SaludToolsDocumentType, SaludToolsEPS, SaludToolsGender } from "../../enums/SaludTools";
 
 /**
- * Same as Patient, but all properties are not required. Is more flexible.
+ * Same as Patient, but all properties are not required. Useful for SEARCH
  */
 type FlexPatient = {
     /**

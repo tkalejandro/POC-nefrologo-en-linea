@@ -1,60 +1,11 @@
-import { Pageable, PatientResponse, Sort } from ".";
+import {  PatientReadBody } from ".";
+import PaginationInformation from "./PaginationInformation";
 
-type SearchPatientBody = {
+interface SearchPatientBody extends PaginationInformation {
     /**
      * List of Patients
      */
-    content: PatientResponse[]
-
-    /**
-     * Pagination information.
-     */
-    pageable: Pageable
-
-    /**
-     * Total Pages
-     */
-    totalPages: number
-
-    /**
-     * Total elements
-     */
-    totalElements: number
-
-    /**
-     * Is the last page?
-     */
-    last: boolean
-
-    /**
-     * Sort properties
-     */
-    sort: Sort
-
-    /**
-     * Whats dif with totalElements?
-     */
-    numberOfElements: number
-
-    /**
-     * Is first page?
-     */
-    first: boolean
-
-    /**
-     * Size??
-     */
-    size: number
-
-    /**
-     * Number??
-     */
-    number: number
-
-    /**
-     * Whats empty?
-     */
-    emtpy: boolean
+    content: PatientReadBody[]   
 }
 
 export default SearchPatientBody
