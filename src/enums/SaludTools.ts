@@ -123,5 +123,5 @@ export enum SaludToolsNotificationState {
  * Clinic where the appointment will take
  */
 export enum SaludToolsClinic {
-    Clinic = 1
+    NefrologiaYDialisisSas = 6038
 }
