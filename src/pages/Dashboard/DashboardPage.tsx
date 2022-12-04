@@ -1,6 +1,7 @@
 import { Grid, Box, styled, Paper } from '@mui/material'
 import React from 'react'
-import { Welcome } from './components';
+import { DashboardGridSizes } from '../../constants';
+import { AppointmentArea, NewAppointment, Welcome } from './components';
 
 /**
  * Users Dashboard
@@ -40,23 +41,29 @@ const DashboardPage = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={4}>
-        <Grid item xs={12} md={8}>
+        <Grid container item xs={12} md={9} spacing={4}>
+          <Grid item xs={12} md={8}>
             <Welcome />
+          </Grid>
+          <Grid item xs={12} md={4}>
+          <NewAppointment />
+          </Grid>
+          <Grid item xs={12} md={6} >
+            <Item sx={{height: DashboardGridSizes.md}}>Number of appointments left.</Item>
+          </Grid>
+         
+          <Grid item xs={12} md={6}>
+            <Item sx={{height: DashboardGridSizes.md}}> urgent call</Item>
+          </Grid>
+          <Grid item xs={12}>
+            <Item sx={{height: DashboardGridSizes.xs}}> Doctors tips</Item>
+          </Grid>
+          <Grid item xs={12}>
+            <Item sx={{height: DashboardGridSizes.lg}}> Data</Item>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Item> schedule an appointment</Item>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Item>Number of appointments left.</Item>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Item> Doctors tips</Item>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Item> urgent call</Item>
-        </Grid>
-        <Grid item xs={12}>
-          <Item> Data</Item>
+        <Grid item xs={12} md={3}>
+          <AppointmentArea />
         </Grid>
       </Grid>
     </Box>
