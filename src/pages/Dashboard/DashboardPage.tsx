@@ -1,6 +1,7 @@
 import { Grid, Box, styled, Paper } from '@mui/material'
 import React from 'react'
-import { Welcome } from './components';
+import { DashboardGridSizes } from '../../constants';
+import { AppointmentArea, NewAppointment, UrgentCall, Welcome } from './components';
 
 /**
  * Users Dashboard
@@ -26,37 +27,54 @@ const DashboardPage = () => {
    * Noramlly you can target the colors primary , secondary directly (will have contrast text automatically) or targeting via theme.palette.primary...  you can find the dark light and contrast text version
    * 
    * MAYBE WE NEED TO EXPLORE COOL DASHBOARD IDEAS. Keep it simple to the GRID. The main goal is to understand MATERIAL UI.
+   * 
+   * We could use FREE SVGs
    */
 
-  //TEMPORARY CODE EACH GRID ITEM SHOULD BE ANY OTHER COMPONENT
+
+  const spacing = 15
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+    //color: theme.palette.text.secondary,
+    margin: spacing,
+    border: "1px solid blue"
   }));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={8}>
+    <Box>
+      <Grid container>
+        <Grid item xs={12} md={9}>
+          <Item>
             <Welcome />
+          </Item>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Item> schedule an appointment</Item>
+        <Grid item xs={12} md={3}>
+          <Item>
+            <NewAppointment />
+          </Item>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Item>Number of appointments left.</Item>
+        <Grid item xs={12} md={9}>
+          < Grid container>
+            <Grid item xs={12} md={6} >
+              <Item sx={{ height: DashboardGridSizes.md }}>Number of appointments left.</Item>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Item >
+                <UrgentCall />
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item sx={{ height: DashboardGridSizes.md }}> Doctors tips</Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item sx={{ height: DashboardGridSizes.lg }}> Data</Item>
+            </Grid>
+          </Grid >
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Item> Doctors tips</Item>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Item> urgent call</Item>
-        </Grid>
-        <Grid item xs={12}>
-          <Item> Data</Item>
+        <Grid item xs={12} md={3}>
+          {/* This calculation is related to he number of space between row. in this grid is 2 so thats why is 20px */}
+          <Item sx={{ background: 'yellow', height: `calc(100% - ${spacing * 2}px)` }}>
+            <AppointmentArea />
+          </Item>
         </Grid>
       </Grid>
     </Box>

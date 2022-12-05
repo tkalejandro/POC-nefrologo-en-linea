@@ -1,0 +1,5 @@
+export { default as Confirmation} from './Confirmation/Confirmation'
+export { default as SelectDoctor} from './SelectDoctor/SelectDoctor'
+export { default as SelectSchedule} from './SelectSchedule/SelectSchedule'
+export { default as PatientInfo} from './PatientInfo/PatientInfo'
+export { default as ButtonsContainer} from './ButtonsContainer/ButtonsContainer'
