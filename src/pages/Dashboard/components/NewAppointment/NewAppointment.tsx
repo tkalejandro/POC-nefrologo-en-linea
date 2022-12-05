@@ -14,7 +14,7 @@ const NewAppointment = () => {
         <Button 
         color="secondary" 
         variant="contained"
-        sx={(theme) => ({ boxShadow: 2, height: DashboardGridSizes.xs })}>
+        sx={(theme) => ({ boxShadow: 1, height: DashboardGridSizes.xs })}>
             you can always hover from the btn , or attribute to get help.
         </Button>
 

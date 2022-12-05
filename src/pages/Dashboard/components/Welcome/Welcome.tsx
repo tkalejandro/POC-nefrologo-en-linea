@@ -10,8 +10,8 @@ import { DashboardGridSizes } from '../../../../constants'
  */
 const Welcome = () => {
   return (
-    <Box sx={ (theme) => ({boxShadow: 2, height: DashboardGridSizes.xs})}>
-        <Typography variant="h4">
+    <Box sx={ (theme) => ({boxShadow: 1, height: DashboardGridSizes.xs})}>
+        <Typography variant="h6">
             Hello Yulia
         </Typography>
     </Box>

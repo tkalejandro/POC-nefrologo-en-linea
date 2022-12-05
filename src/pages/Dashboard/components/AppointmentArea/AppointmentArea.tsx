@@ -10,7 +10,7 @@ import { DashboardGridSizes } from '../../../../constants'
  */
 const AppointmentArea = () => {
   return (
-    <Box sx={ (theme) => ({boxShadow: 2,  height: DashboardGridSizes.xxl})}>
+    <Box sx={ (theme) => ({boxShadow: 1,  height: '100%'})}>
         <Box>
             Im calendar area
         </Box>
