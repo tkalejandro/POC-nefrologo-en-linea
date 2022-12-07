@@ -1,5 +1,5 @@
 import React from 'react'
-import dayjs, { Dayjs } from 'dayjs';
+import * as dayjs from 'dayjs'
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -11,7 +11,7 @@ import { Box, Typography } from '@mui/material';
  * @returns 
  */
 const UserCalendar = () => {
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs());
+  const [value, setValue] = React.useState<dayjs.Dayjs | null>();
 
   return (
     <Box>
