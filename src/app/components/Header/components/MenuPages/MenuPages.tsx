@@ -49,7 +49,7 @@ const MenuPages = () => {
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     onClick={handleOpenNavMenu}
-                    color="inherit"
+                    color="primary"
                 >
                     <MenuIcon />
                 </IconButton>
@@ -72,8 +72,8 @@ const MenuPages = () => {
                     }}
                 >
                     {pages.map((page) => (
-                        <MenuItem key={page} onClick={handleCloseNavMenu}>
-                            <Typography textAlign="center">{page}</Typography>
+                        <MenuItem component={Link} to={assignPath(page)} key={page} onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">{page}</Typography>
                         </MenuItem>
                     ))}
                 </Menu>
@@ -81,15 +81,16 @@ const MenuPages = () => {
             {/* DESKTOP */}
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
-                    <Link to={assignPath(page)}>
+                   
                         <Button
+                        component={Link} to={assignPath(page)}
                             key={page}
                             onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
+                            sx={{ my: 2, display: 'block' }}
                         >
                             {page}
                         </Button>
-                    </Link>
+                    
                 ))}
             </Box>
         </>
