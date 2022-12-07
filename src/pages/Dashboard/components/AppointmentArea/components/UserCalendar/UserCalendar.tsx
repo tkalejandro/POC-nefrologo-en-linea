@@ -6,6 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { Box, Typography } from '@mui/material';
 
+
 /**
  * Calendar of the user, it will show a history of things that has happened with user.
  * @returns 
