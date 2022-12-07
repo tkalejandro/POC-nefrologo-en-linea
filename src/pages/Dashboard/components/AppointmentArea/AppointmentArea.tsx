@@ -1,6 +1,7 @@
-import {  Button, Typography, Box } from '@mui/material'
+import { Button, Typography, Box, Divider } from '@mui/material'
 import React from 'react'
 import { DashboardGridSizes } from '../../../../constants'
+import { NextAppointmentCard, UserCalendar } from './components'
 
 //RAFCE
 
@@ -9,14 +10,15 @@ import { DashboardGridSizes } from '../../../../constants'
  * @returns 
  */
 const AppointmentArea = () => {
+
   return (
-    <Box sx={ (theme) => ({boxShadow: 1,  height: '100%'})}>
-        <Box>
-            Im calendar area
-        </Box>
-       <Box>
-           Im appointments card
-       </Box>
+    <Box sx={(theme) => ({ height: '100%' })}>
+      <UserCalendar />
+      <Box sx={{ p: 2 }}>
+        <Divider sx={{mb: 2}} />
+        <Typography component="h2" variant="subtitle2">Next appointments</Typography>
+        <NextAppointmentCard />
+      </Box>
     </Box>
   )
 }

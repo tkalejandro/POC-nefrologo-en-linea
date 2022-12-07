@@ -1,6 +1,7 @@
-import { Button, Typography, Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import React from 'react'
 import { DashboardGridSizes } from '../../../../constants'
+import AddIcon from '@mui/icons-material/Add';
 
 //RAFCE
 
@@ -10,13 +11,18 @@ import { DashboardGridSizes } from '../../../../constants'
  */
 const NewAppointment = () => {
     return (
-
-        <Button 
-        color="secondary" 
-        variant="contained"
-        sx={(theme) => ({ boxShadow: 1, height: DashboardGridSizes.xs })}>
-            you can always hover from the btn , or attribute to get help.
+        <Box   sx={(theme) => ({height: DashboardGridSizes.xs, })}>
+        <Button
+            fullWidth
+            color="primary"
+            variant="contained"
+            sx={{height: '100%'}}
+          >
+            <AddIcon />
+            {' '}
+            New appointment
         </Button>
+        </Box>
 
     )
 }

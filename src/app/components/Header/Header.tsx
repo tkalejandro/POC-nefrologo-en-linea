@@ -4,6 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { Logo, MenuPages } from './components';
 import AccountMenu from './components/AccountMenu/AccountMenu';
+import { Theme } from '@mui/material';
 
 /**
  * Header. It will contain all the navigation from pages to account pages.
@@ -12,7 +13,10 @@ import AccountMenu from './components/AccountMenu/AccountMenu';
 const Header = () => {
 
   return (
-    <AppBar position="static">
+    <AppBar variant="outlined" position="static" elevation={0}
+    sx={(theme : Theme) =>({
+      background: theme.palette.background.paper
+    })}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Logo />

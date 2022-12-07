@@ -32,11 +32,18 @@ const DashboardPage = () => {
    */
 
 
-  const spacing = 15
+  const spacing = 10
   const Item = styled(Paper)(({ theme }) => ({
-    //color: theme.palette.text.secondary,
+    // This will give the color to all texts inside components
+    color: theme.palette.text.secondary,
     margin: spacing,
-    border: "1px solid blue"
+    // This is the color for titles for each widget. Make sure is h2
+    '& h2': {
+      color: theme.palette.primary.main
+    },
+    '& h3': {
+      color: theme.palette.primary.light
+    },
   }));
 
   return (
@@ -52,27 +59,23 @@ const DashboardPage = () => {
             <NewAppointment />
           </Item>
         </Grid>
-        <Grid item xs={12} md={9}>
-          < Grid container>
-            <Grid item xs={12} md={6} >
-              <Item sx={{ height: DashboardGridSizes.md }}>Number of appointments left.</Item>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Item >
-                <UrgentCall />
-              </Item>
-            </Grid>
-            <Grid item xs={12}>
-              <Item sx={{ height: DashboardGridSizes.md }}> Doctors tips</Item>
-            </Grid>
-            <Grid item xs={12}>
-              <Item sx={{ height: DashboardGridSizes.lg }}> Data</Item>
-            </Grid>
-          </Grid >
+        <Grid item container xs={12} md={9}>
+          <Grid item xs={12} lg={6} >
+            <Item sx={{ height: `calc(100% - ${spacing * 2}px)` }}>User information / Number of appointments left.</Item>
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <Item>
+              <UrgentCall />
+            </Item>
+            <Item sx={{ height: DashboardGridSizes.md, mt: 2}}> Doctors tips</Item>
+          </Grid>
+          <Grid item xs={12}>
+            <Item sx={{ height: DashboardGridSizes.lg }}> Data</Item>
+          </Grid>
         </Grid>
         <Grid item xs={12} md={3}>
           {/* This calculation is related to he number of space between row. in this grid is 2 so thats why is 20px */}
-          <Item sx={{ background: 'yellow', height: `calc(100% - ${spacing * 2}px)` }}>
+          <Item sx={{ height: `calc(100% - ${spacing * 2}px)` }}>
             <AppointmentArea />
           </Item>
         </Grid>
