@@ -1,5 +1,7 @@
 import { Box, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import React, { useState } from 'react'
+import { useAppSelector } from '../../redux/hooks';
+import { RootState } from '../../redux/store';
 import { ButtonsContainer, Confirmation, PatientInfo, SelectDoctor, SelectSchedule } from './components';
 
 /**
@@ -73,7 +75,9 @@ const BookingPage = () => {
 
     switch (step) {
       case 0:
-        return <SelectDoctor />
+        return <SelectDoctor 
+        handleNext={handleNext}
+        />
       case 1:
         return <SelectSchedule />
       case 2:
@@ -82,6 +86,10 @@ const BookingPage = () => {
         return null
     }
   }
+
+  const bookingPreRequest = useAppSelector(state => state.booking.bookingPreRequest)
+
+  console.log(bookingPreRequest)
 
   return (
     <Box sx={{ width: '100%', minHeight: '80vh', display: 'flex' , flexDirection: 'column'}}>
