@@ -3,9 +3,9 @@
  */
 const DashboardGridSizes = {
     /**
-     * 75
+     * 50
      */
-    xs: 75,
+    xs: 50,
     /**
      * 100
      */

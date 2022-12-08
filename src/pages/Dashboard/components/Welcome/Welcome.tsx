@@ -1,6 +1,6 @@
-import {  Button, Typography, Box } from '@mui/material'
+import {  Typography, Box } from '@mui/material'
 import React from 'react'
-import { DashboardGridSizes } from '../../../../constants'
+
 
 //RAFCE
 
@@ -10,7 +10,7 @@ import { DashboardGridSizes } from '../../../../constants'
  */
 const Welcome = () => {
   return (
-    <Box sx={ (theme) => ({ height: DashboardGridSizes.xs, ml: 2, mt: 2})}>
+    <Box sx={{ m: 2}}>
         <Typography variant="h6" component="h2" sx={{}}>
             Hello Yulia
         </Typography>

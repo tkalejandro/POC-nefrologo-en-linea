@@ -16,17 +16,17 @@ const UserCalendar = () => {
 
   return (
     <Box>
-      <Typography component="h2" variant="h6" sx={{px: 2, pt: 2}}>Your calendar</Typography>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <StaticDatePicker
-        displayStaticWrapperAs="desktop"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
+      <Typography component="h2" variant="subtitle2" sx={{ mt: 2, mx: 2 }}>Your calendar</Typography>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <StaticDatePicker
+          displayStaticWrapperAs="desktop"
+          value={value}
+          onChange={(newValue) => {
+            setValue(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
     </Box>
   );
 }

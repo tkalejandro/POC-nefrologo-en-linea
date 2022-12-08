@@ -7,25 +7,25 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#315da8',
+      main: '#224d6d',
     },
     secondary: {
       main: '#92c137',
     },
     error: {
-      main: '#f44336',
+      main: '#c91d1d',
     },
     warning: {
-      main: '#ff9800',
+      main: '#E8A530',
     },
     info: {
-      main: '#2196f3',
+      main: '#315da8',
     },
     success: {
-      main: '#4caf50',
+      main: '#73B234',
     },
     background: {
-      default: '#f6f5f0',
+      default: '#F2F2F3',
       paper: '#fff',
     },
     divider: 'rgba(0,0,0,0.12)',

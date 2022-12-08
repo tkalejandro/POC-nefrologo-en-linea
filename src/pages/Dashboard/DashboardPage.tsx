@@ -1,14 +1,12 @@
-import { Grid, Box, styled, Paper } from '@mui/material'
+import {  Box, styled, Paper, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
-import { DashboardGridSizes } from '../../constants';
-import { AppointmentArea, NewAppointment, UrgentCall, Welcome } from './components';
+import { AppointmentArea, NewAppointment, UrgentCommunication, Welcome } from './components';
 
 /**
  * Users Dashboard
  * @returns 
  */
 const DashboardPage = () => {
-
 
   /**
    * The idea is to have a useful dashboard for the user.
@@ -31,12 +29,15 @@ const DashboardPage = () => {
    * We could use FREE SVGs
    */
 
+  const theme = useTheme()
 
-  const spacing = 10
+  /**
+   * Item Component.
+   */
   const Item = styled(Paper)(({ theme }) => ({
     // This will give the color to all texts inside components
     color: theme.palette.text.secondary,
-    margin: spacing,
+    //margin: spacing,
     // This is the color for titles for each widget. Make sure is h2
     '& h2': {
       color: theme.palette.primary.main
@@ -46,40 +47,98 @@ const DashboardPage = () => {
     },
   }));
 
+  /**
+   * Function to repeat string information inside the grid area
+   */
+  const repeatStr = (str : string, num : number) : string => {
+    if(num < 0) {
+      return ""
+    } else if (num === 1) {
+      return `${str} `
+    } else {
+        let repeatedStr = ""
+        while(num > 0) {
+          repeatedStr += `${str} `
+          num--
+        }
+        return repeatedStr;
+    }
+  }
+
+  const gridAreaLg = `"${repeatStr("wl", 9)} ${repeatStr("na", 3)}"
+                      "${repeatStr("ui", 5)} ${repeatStr("uc", 4)} ${repeatStr("aa", 3)}"
+                      "${repeatStr("ui", 5)} ${repeatStr("dt", 4)} ${repeatStr("aa", 3)}"
+                      "${repeatStr("da", 9)} ${repeatStr("aa", 3)}"`
+
+  const gridAreaMd = `"${repeatStr("wl", 8)} ${repeatStr("na", 4)}"
+                      "${repeatStr("ui", 5)} ${repeatStr("uc", 3)} ${repeatStr("aa", 4)}"
+                      "${repeatStr("ui", 5)} ${repeatStr("dt", 3)} ${repeatStr("aa", 4)}"
+                      "${repeatStr("da", 8)} ${repeatStr("aa", 4)}"`
+
+  const gridAreaSm = `"${repeatStr("wl", 12)}"
+                      "${repeatStr("na", 12)}"
+                      "${repeatStr("aa", 12)}"
+                      "${repeatStr("ui", 12)}"
+                      "${repeatStr("uc", 12)}"
+                      "${repeatStr("dt", 12)}"
+                      "${repeatStr("da", 12)}"`
+
+  const isMd = useMediaQuery(theme.breakpoints.up('md'));
+  const isLg = useMediaQuery(theme.breakpoints.up('lg'));
+
+  /**
+   * Function to choose the grid layout.
+   * We are using vanilla grid and not material UI grid because the complexity of this GRID.
+   * This is a special case.
+   */
+  const gridAreaToUse = (): string => {
+    if (isLg) {
+      return gridAreaLg
+    } else if (isMd) {
+      return gridAreaMd
+    } else {
+      return gridAreaSm
+    }
+  }
+
+
   return (
     <Box>
-      <Grid container>
-        <Grid item xs={12} md={9}>
-          <Item>
-            <Welcome />
-          </Item>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Item>
-            <NewAppointment />
-          </Item>
-        </Grid>
-        <Grid item container xs={12} md={9}>
-          <Grid item xs={12} lg={6} >
-            <Item sx={{ height: `calc(100% - ${spacing * 2}px)` }}>User information / Number of appointments left.</Item>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <Item>
-              <UrgentCall />
-            </Item>
-            <Item sx={{ height: DashboardGridSizes.md, mt: 2}}> Doctors tips</Item>
-          </Grid>
-          <Grid item xs={12}>
-            <Item sx={{ height: DashboardGridSizes.lg }}> Data</Item>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          {/* This calculation is related to he number of space between row. in this grid is 2 so thats why is 20px */}
-          <Item sx={{ height: `calc(100% - ${spacing * 2}px)` }}>
-            <AppointmentArea />
-          </Item>
-        </Grid>
-      </Grid>
+      <Box sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(12, 1fr)',
+        gap: 3,
+        gridTemplateRows: 'auto',
+        gridTemplateAreas: gridAreaToUse(),
+      }}>
+        <Item sx={{ gridArea: 'wl' }}>
+          <Welcome />
+        </Item>
+        <Item sx={{ gridArea: 'na' }}>
+          <NewAppointment />
+        </Item>
+        <Item sx={{ gridArea: 'aa' }}>
+          <AppointmentArea />
+        </Item>
+        <Item sx={{ gridArea: 'ui' }}>
+          <Box sx={{ m: 2 }}>
+            User information / Number of appointments left.
+          </Box>
+        </Item>
+        <Item sx={{ gridArea: 'uc' }}>
+          <UrgentCommunication />
+        </Item>
+        <Item sx={{ gridArea: 'dt' }}>
+          <Box sx={{ m: 2 }}>
+            Doctor Tips
+          </Box>
+        </Item>
+        <Item sx={{ gridArea: 'da' }}>
+          <Box sx={{ m: 2 }}>
+            Data
+          </Box>
+        </Item>
+      </Box>
     </Box>
   )
 }

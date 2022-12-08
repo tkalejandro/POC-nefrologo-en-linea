@@ -14,7 +14,7 @@ const AppointmentArea = () => {
   return (
     <Box sx={(theme) => ({ height: '100%' })}>
       <UserCalendar />
-      <Box sx={{ p: 2 }}>
+      <Box sx={{ m: 2 }}>
         <Divider sx={{mb: 2}} />
         <Typography component="h2" variant="subtitle2">Next appointments</Typography>
         <NextAppointmentCard />
