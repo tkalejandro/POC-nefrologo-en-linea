@@ -11,12 +11,18 @@ const TimeSelection = () => {
             let hours = Math.floor(i / 60);
             let minutes = i % 60;
 
-            const rnd = Math.floor(Math.random() * 10) + 1;
-            const time : TimeChip= {
-                time:  `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`,
-                available: rnd % 2 === 0
+            //This restriction should be consider with -5 GMT. Still need to think how this will be done.
+            const minHour = 7
+            const maxHour = 18
+           
+            if(hours >= minHour && hours < maxHour) {
+                const rnd = Math.floor(Math.random() * 10) + 1;
+                const time : TimeChip= {
+                    time:  `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`,
+                    available: rnd % 2 === 0
+                }
+                result.push(time);
             }
-            result.push(time);
         }
 
         return result
@@ -25,16 +31,16 @@ const TimeSelection = () => {
     const times = printTimes()
 
     return (
-        <Box sx={{ flex: 1 }}>
-            <Typography component="h2" variant="subtitle2" sx={{ mt: 2, mx: 2 }}>Time:</Typography>
+        <Box sx={{  height: '100%' }}>
+            {/* <Typography component="h2" variant="subtitle2" sx={{ mt: 2, mx: 2 }}>Time:</Typography> */}
 
-            <Stack direction="column" spacing={0} flexWrap="wrap" sx={{ maxHeight: 800 }}>
+            <Stack direction="column" spacing={0} flexWrap="wrap" sx={{ maxHeight: '50%' }}>
                 {
                     times.map((t : TimeChip) => {
 
                         const { time, available} = t
                         return (
-                            <Chip label={time} color={available ? 'secondary' : 'default'} sx={{ m: 2 }} />
+                            <Chip key={time} label={time} color={available ? 'secondary' : 'default'} sx={{ m: 2 }} />
                         )
                     })
                 }

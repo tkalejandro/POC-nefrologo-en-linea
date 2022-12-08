@@ -10,21 +10,23 @@ const PatientInfo = () => {
   };
 
   return (
-    <Box sx={{ flex: 1, mt: 2}}>
-      <Typography variant="h5"  mb={2} color="primary">Your information</Typography>
+    <Box sx={{ flex: 1, mt: 2 }}>
+      <Typography variant="h5" mb={2} color="primary">Your information</Typography>
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={4} md={3}>
           <TextField
-          fullWidth
+            required
+            fullWidth
             id="outlined-multiline-flexible"
-            label="Document Type"
+            label="Document"
             value={value}
             onChange={handleChange}
           />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={8} md={9}>
           <TextField
-          fullWidth
+            required
+            fullWidth
             id="outlined-multiline-flexible"
             label="ID"
             value={value}
@@ -32,8 +34,9 @@ const PatientInfo = () => {
           />
         </Grid>
         <Grid item xs={6} md={3}>
-        <TextField
-          fullWidth
+          <TextField
+            required
+            fullWidth
             id="outlined-multiline-flexible"
             label="First Name"
             value={value}
@@ -41,17 +44,18 @@ const PatientInfo = () => {
           />
         </Grid>
         <Grid item xs={6} md={3}>
-        <TextField
-          fullWidth
+          <TextField
+            fullWidth
             id="outlined-multiline-flexible"
-            label="Second name (optional)"
+            label="Second name"
             value={value}
             onChange={handleChange}
           />
         </Grid>
         <Grid item xs={6} md={3}>
-        <TextField
-          fullWidth
+          <TextField
+            required
+            fullWidth
             id="outlined-multiline-flexible"
             label="Last name"
             value={value}
@@ -59,17 +63,18 @@ const PatientInfo = () => {
           />
         </Grid>
         <Grid item xs={6} md={3}>
-        <TextField
-          fullWidth
+          <TextField
+            fullWidth
             id="outlined-multiline-flexible"
-            label="Second last name (optional)"
+            label="Second last name"
             value={value}
             onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
-        <TextField
-          fullWidth
+          <TextField
+            required
+            fullWidth
             id="outlined-multiline-flexible"
             label="Gender"
             value={value}
@@ -77,35 +82,36 @@ const PatientInfo = () => {
           />
         </Grid>
         <Grid item xs={12} md={6}>
-        <TextField
-          fullWidth
+          <TextField
+            fullWidth
             id="outlined-multiline-flexible"
-            label="Birthday (optional)"
+            label="Birthday"
             value={value}
             onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
-        <TextField
-          fullWidth
+          <TextField
+            fullWidth
             id="outlined-multiline-flexible"
             label="Email"
             value={value}
             onChange={handleChange}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
-        <TextField
-          fullWidth
+        <Grid item xs={3} md={1}>
+          <TextField
+            fullWidth
             id="outlined-multiline-flexible"
             label="Country"
             value={value}
             onChange={handleChange}
           />
         </Grid>
-        <Grid item xs={12}>
-        <TextField
-          fullWidth
+        <Grid item xs={9} md={5}>
+          <TextField
+            required
+            fullWidth
             id="outlined-multiline-flexible"
             label="Phone"
             value={value}
@@ -113,10 +119,10 @@ const PatientInfo = () => {
           />
         </Grid>
         <Grid item xs={12}>
-        <TextField
-          fullWidth
-          multiline
-          rows={4}
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
             id="outlined-multiline-flexible"
             label="Comments"
             value={value}

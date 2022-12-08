@@ -29,9 +29,9 @@ const SelectDoctor = () => {
   ]
   return (
     <Box sx={{flex: 1}}>
-      <Typography sx={{ mt: 2, mb: 1 }}>Select Doctor</Typography>
+      <Typography variant="h5" color="primary" sx={{ mt: 2, mb: 1 }}>Select Doctor</Typography>
 
-      <Box sx={{height: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap'}}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-around',  flexWrap: 'wrap'}}>
         {
           availableDoctors.map((doctor: DoctorInfo) => {
 
@@ -40,7 +40,7 @@ const SelectDoctor = () => {
             const fullName = `Dr. ${firstName} ${secondName ?? ''} ${firstLastName} ${secondLastName ?? ''}`
 
             return (
-              <Card key={id} sx={{ width: 345, m: 2 }}>
+              <Card key={id} sx={{ width: '100%', maxWidth: 365, m: 2 }}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
