@@ -21,9 +21,9 @@ type Patient = {
      */
     secondLastName?: string
     /**
-     * Birthday of user.
+     * Birthday of user. 1991-10-02 yyyy-mm-dd
      */
-    birthDate?: Date
+    birthDate?: string
     /**
      * Gender of user.
      */
