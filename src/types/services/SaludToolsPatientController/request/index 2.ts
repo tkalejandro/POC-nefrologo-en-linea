@@ -1,0 +1,5 @@
+export type { default as DeletePatientRequest } from './DeletePatientRequest'
+export type { default as ReadPatientRequest } from './ReadPatientRequest'
+export type { default as CreatePatientRequest } from './CreatePatientRequest'
+export type { default as UpdatePatientRequest } from './UpdatePatientRequest'
+export type { default as SearchPatientRequest } from './SearchPatientRequest'

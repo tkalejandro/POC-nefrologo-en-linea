@@ -11,14 +11,14 @@ type FlexAppointment = {
     id?: string
 
     /**
-     * Starting Date and Time of appointment.
+     * Starting Date and Time of appointment. yyyy-mm-dd HH:mm -> 2021-04-30 08:00
      */
-    startAppointment?: Date
+    startAppointment?: string
 
     /**
-     * Ending Date and Time of appointment.
+     * Ending Date and Time of appointment. yyyy-mm-dd HH:mm -> 2021-04-30 08:00
      */
-    endAppointment?: Date
+    endAppointment?: string
 
     /**
      * Document Type of patient.

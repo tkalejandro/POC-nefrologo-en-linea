@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
+import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 import { TypesOfSpeciality } from '../../../../enums/NefrologiaYDialisisSas'
 import { DoctorInfo } from '../../../../types/BookingPage'

@@ -1,2 +1,5 @@
-export type { default as DoctorInfo} from './DoctorInfo'
-export type { default as TimeChip} from './TimeChip'
+export type { default as DoctorInfo } from './DoctorInfo'
+export type { default as TimeChip } from './TimeChip'
+export type { default as BookingPreRequest } from './BookingPreRequest'
+export type { default as StartingEndingDateTime } from './StartingEndingDateTime'
+export type { default as Modality } from './Modality'

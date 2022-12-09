@@ -8,11 +8,11 @@ import { store } from '../redux/store';
 const App = (): JSX.Element => {
   return (
     <Provider store={store}>
-    <ThemeProvider theme={lightTheme}>
-      <Header />
-      <Main />
-      <Footer />
-    </ThemeProvider>
+      <ThemeProvider theme={lightTheme}>
+        <Header />
+        <Main />
+        <Footer />
+      </ThemeProvider>
     </Provider>
   );
 }

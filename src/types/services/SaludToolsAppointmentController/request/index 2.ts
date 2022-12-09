@@ -1,0 +1,5 @@
+export type { default as CreateAppointmentRequest} from './CreateAppointmentRequest'
+export type { default as DeleteAppointmentRequest} from './DeleteAppointmentRequest'
+export type { default as ReadAppointmentRequest} from './ReadAppointmentRequest'
+export type { default as SearchAppointmentRequest} from './SearchAppointmentRequest'
+export type { default as UpdateAppointmentRequest} from './UpdateAppointmentRequest'

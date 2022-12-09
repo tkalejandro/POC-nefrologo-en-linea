@@ -1,20 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { FlexAppointment } from '../../types/SaludTools'
-import { SaludToolsDocumentType } from '../../enums/SaludTools'
+import { SaludToolsDocumentType, SaludToolsModality } from '../../enums/SaludTools'
+import { BookingPreRequest, StartingEndingDateTime } from '../../types/BookingPage'
+
 
 
 // Define a type for the slice state
 interface BookingState {
     /**
-     * We use FlexAppointment, to make sure all variable can be undefined. On submit we switch to the Saludtools CreateAppointmentRequest.
+     * We use BookingPreRequest, to make sure all variable can be undefined. On submit we switch to Saludtools CreateAppointmentRequest.
      */
-    bookingPreRequest: FlexAppointment 
+    bookingPreRequest?: BookingPreRequest
 }
 
 // Define the initial state using that type
 const initialState: BookingState = {
-    bookingPreRequest: {},
+    bookingPreRequest: undefined,
 }
 
 export const bookingPageSlice = createSlice({
@@ -22,15 +23,48 @@ export const bookingPageSlice = createSlice({
     initialState,
     reducers: {
         selectDoctor: (state, action: PayloadAction<string>) => {
-            
+            if (state.bookingPreRequest == null) {
+                const newBookingPreRequest: BookingPreRequest = {
+                    doctorDocumentType: SaludToolsDocumentType.CedulaCiudadania,
+                    doctorDocumentNumber: action.payload
+                }
+
+                state.bookingPreRequest = newBookingPreRequest
+                return
+            }
             state.bookingPreRequest.doctorDocumentType = SaludToolsDocumentType.CedulaCiudadania
             state.bookingPreRequest.doctorDocumentNumber = action.payload
         },
+        selectDateTime: (state, action: PayloadAction<StartingEndingDateTime>) => {
+            const {startTime, endTime} = action.payload
+            if(state.bookingPreRequest == null){
+                const newBookingPreRequest: BookingPreRequest = {
+                    startAppointment: startTime,
+                    endAppointment: endTime
+                }
+                state.bookingPreRequest = newBookingPreRequest
+                return
+            }
+            state.bookingPreRequest.startAppointment = startTime
+            state.bookingPreRequest.endAppointment = endTime
+        },
+        selectModality: (state, action: PayloadAction<SaludToolsModality>) => {
+            if(state.bookingPreRequest == null) {
+                const newBookingPreRequest : BookingPreRequest = {
+                    modality: action.payload
+                }
+                state.bookingPreRequest = newBookingPreRequest
+                return
+            } 
+            state.bookingPreRequest.modality = action.payload
+        }
     },
 })
 
 export const {
-  selectDoctor
+    selectDoctor,
+    selectDateTime,
+    selectModality
 } = bookingPageSlice.actions
 
 

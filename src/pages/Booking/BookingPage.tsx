@@ -1,8 +1,7 @@
 import { Box, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { useAppSelector } from '../../redux/hooks';
-import { RootState } from '../../redux/store';
-import { ButtonsContainer, Confirmation, PatientInfo, SelectDoctor, SelectSchedule } from './components';
+import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectModality } from './components';
 
 /**
  * Page where the user will be able to make an appointment
@@ -19,7 +18,10 @@ const BookingPage = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const [skipped, setSkipped] = useState(new Set<number>());
 
-  const steps = ['Select Doctor', 'Select Time', 'Your Information'];
+  /**
+   * Steps of the process
+   */
+  const steps = ['Select Modality', 'Select Doctor', 'Select Time'];
 
   const isStepOptional = (step: number) => {
     //return step === 1;
@@ -75,13 +77,15 @@ const BookingPage = () => {
 
     switch (step) {
       case 0:
-        return <SelectDoctor 
-        handleNext={handleNext}
+        return <SelectModality
+          handleNext={handleNext}
         />
       case 1:
-        return <SelectSchedule />
+        return <SelectDoctor
+          handleNext={handleNext}
+        />
       case 2:
-        return <PatientInfo />
+        return <SelectSchedule />
       default:
         return null
     }
@@ -92,7 +96,7 @@ const BookingPage = () => {
   console.log(bookingPreRequest)
 
   return (
-    <Box sx={{ width: '100%', minHeight: '80vh', display: 'flex' , flexDirection: 'column'}}>
+    <Box sx={{ width: '100%', minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
@@ -114,7 +118,7 @@ const BookingPage = () => {
           );
         })}
       </Stepper>
-      <Box sx={{flex:1, display: 'flex'}}>
+      <Box sx={{ display: 'flex' }}>
         {selectStepToRender(activeStep)}
       </Box>
 
