@@ -33,10 +33,10 @@ class SaludToolsAppointmentController {
             console.log("the response", response)
             return response
 
-        } catch (e) {
-
+        } catch (e : any) {
+            console.log(Object.keys(e))
             const isError: ApiError = {
-                error: e as string,
+                error: e.message,
                 code: 500
             }
             return isError

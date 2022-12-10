@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { SaludToolsDocumentType, SaludToolsModality } from '../../enums/SaludTools'
 import { BookingPreRequest, StartingEndingDateTime } from '../../types/BookingPage'
+import { ApiError } from '../../types/Api'
 
 
 
