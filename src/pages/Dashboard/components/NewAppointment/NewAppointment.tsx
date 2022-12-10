@@ -2,6 +2,7 @@ import { Box, Button } from '@mui/material'
 import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
+import { RoutesPath } from '../../../Routes';
 
 //RAFCE
 
@@ -14,7 +15,7 @@ const NewAppointment = () => {
         <Box sx={(theme) => ({ height: '100%' })}>
             <Button
                 component={Link}
-                to="/booking"
+                to={RoutesPath.booking}
                 fullWidth
                 color="primary"
                 variant="contained"

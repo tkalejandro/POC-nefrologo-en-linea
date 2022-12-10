@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { NefrologiaYDialisisAppointmentTypes } from '../../enums/NefrologiaYDialisisSas';
 import { SaludToolsActionType, SaludToolsClinic, SaludToolsEventType, SaludToolsNotificationState, SaludToolsStateAppointment } from '../../enums/SaludTools';
 import { useAppSelector } from '../../redux/hooks';
-import { isSaludToolsApiError } from '../../services/ApiError/IsSaludToolsApiError';
+import { isSaludToolsApiError } from '../../services/ApiError/isSaludToolsApiError';
 import { saludToolsAppointmentController } from '../../services/SaludToolsAppointmentController';
 import { Appointment } from '../../types/SaludTools';
 import { CreateAppointmentRequest } from '../../types/services/SaludToolsAppointmentController/request';

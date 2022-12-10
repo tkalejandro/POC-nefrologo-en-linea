@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from '@mui/system';
 import { Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { RoutesPath } from '../../../../../pages/Routes';
 
 
 /**
@@ -29,13 +30,13 @@ const MenuPages = () => {
     const assignPath = (page: string): string => {
         switch (page) {
             case 'dashboard':
-                return '/'
+                return RoutesPath.dashboard
             case 'booking':
-                return '/booking'
+                return RoutesPath.booking
             case 'test':
-                return '/test'
+                return RoutesPath.test
             default:
-                return '/'
+                return RoutesPath.dashboard
         }
     }
 
