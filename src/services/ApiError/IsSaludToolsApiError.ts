@@ -1,6 +1,13 @@
 import { ApiError, SaludToolsApiResponse } from "../../types/Api"
 
-export const isSaludToolsApiError = ( response : SaludToolsApiResponse | string) : ApiError | null => {
+
+/**
+ * Function that read a saludTools api response and check if is an error.
+ * String is because SaludTools give string when is 401.
+ * For positive or negative request, Saludtools use the same structure of response.
+ * Therefore, we check is the error code is more than 400. And then transform it in our ApiError type.
+ */
+const isSaludToolsApiError = ( response : SaludToolsApiResponse | string) : ApiError | null => {
     //SaludTools reponse with string when is not authorized.
     if(typeof(response) === 'string') {
         const newError : ApiError = {
@@ -25,3 +32,5 @@ export const isSaludToolsApiError = ( response : SaludToolsApiResponse | string)
 
     return null
 }
+
+export default isSaludToolsApiError

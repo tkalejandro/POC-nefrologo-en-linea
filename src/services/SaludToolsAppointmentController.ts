@@ -1,6 +1,8 @@
 import ApiError from "../types/Api/ApiError"
 import { CreateAppointmentRequest } from "../types/services/SaludToolsAppointmentController/request"
 import { CreateAppointmentResponse } from "../types/services/SaludToolsAppointmentController/response"
+import { isSaludToolsApiError } from "./ApiError"
+
 
 
 /**
@@ -8,22 +10,36 @@ import { CreateAppointmentResponse } from "../types/services/SaludToolsAppointme
  */
 class SaludToolsAppointmentController {
 
-    async createAppointment(createAppointmentRequest: CreateAppointmentRequest): Promise<CreateAppointmentResponse> {
+    async createAppointment(createAppointmentRequest: CreateAppointmentRequest): Promise<CreateAppointmentResponse | ApiError> {
         try {
             const data = JSON.stringify(createAppointmentRequest)
             const settings = {
                 method: "POST",
                 body: data,
+                headers: {
+                    "Content-Type": "application/json",
+                },
             }
-            const request = await fetch('https://saludtools.qa.carecloud.com.co/integration/sync/event/v1/', settings)
+            const request = await fetch('https://saludtools.carecloud.com.co/integration/sync/event/v1/', settings)
 
             const response: CreateAppointmentResponse = await request.json()
 
+            const isError = isSaludToolsApiError(response)
+
+            if (isError) {
+                return isError
+            }
+
+            console.log("the response", response)
             return response
 
         } catch (e) {
-            console.log(e)
-            return e as CreateAppointmentResponse
+
+            const isError: ApiError = {
+                error: e as string,
+                code: 500
+            }
+            return isError
         }
     }
 
