@@ -15,10 +15,10 @@ import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectMod
  */
 const BookingPage = () => {
 
- 
+
   const [activeStep, setActiveStep] = useState<number>(0);
   const [skipped, setSkipped] = useState(new Set<number>());
-  const [errorMessage, setErrorMessage] = useState<string | undefined>() 
+  const [errorMessage, setErrorMessage] = useState<string | undefined>()
 
   /**
    * Steps of the process
@@ -74,7 +74,7 @@ const BookingPage = () => {
   const selectStepToRender = (step: number): JSX.Element | null => {
     if (step === steps.length) {
       //All steps have been completed.
-      return <Confirmation errorMessage={errorMessage}/>
+      return <Confirmation errorMessage={errorMessage} />
     }
 
     switch (step) {
@@ -112,7 +112,7 @@ const BookingPage = () => {
     }
 
     const { documentType, documentNumber } = currentUserSaludToolsProfile
-    const body : Appointment = {
+    const body: Appointment = {
       startAppointment,
       endAppointment,
       patientDocumentType: documentType,
@@ -127,7 +127,7 @@ const BookingPage = () => {
       comment: "This is a test"
 
     }
-    const request : CreateAppointmentRequest = {
+    const request: CreateAppointmentRequest = {
       eventType: SaludToolsEventType.Appointment,
       actionType: SaludToolsActionType.Create,
       body
@@ -136,15 +136,13 @@ const BookingPage = () => {
     const createAppointmentRequest = await saludToolsAppointmentController.createAppointment(request)
 
 
-    
+
     if (isApiError(createAppointmentRequest)) {
-      const {error} = createAppointmentRequest
+      const { error } = createAppointmentRequest
       setErrorMessage(error)
       handleNext()
       return
-  }
-
-  console.log(createAppointmentRequest)
+    }
   }
 
   return (
