@@ -61,7 +61,6 @@ const Schedule = () => {
       endTime: endDateTime.format(format)
     }
 
-    console.log("dates")
     dispatch(selectDateTime(dates))
   }
 
