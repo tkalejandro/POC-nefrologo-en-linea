@@ -1,42 +1,49 @@
+import { SaludToolsApiRoutes } from "../constants"
 import ApiError from "../types/Api/ApiError"
 import { CreateAppointmentRequest } from "../types/services/SaludToolsAppointmentController/request"
 import { CreateAppointmentResponse } from "../types/services/SaludToolsAppointmentController/response"
-import { isSaludToolsApiError } from "./ApiError"
+import { isApiError, isSaludToolsApiError } from "./ApiError"
+import { ApiServices } from "./ApiServices"
 
 
 
 /**
  * Service that will talk to SaludTools controller..
  */
-class SaludToolsAppointmentController {
+class SaludToolsAppointmentController extends ApiServices {
 
     async createAppointment(createAppointmentRequest: CreateAppointmentRequest): Promise<CreateAppointmentResponse | ApiError> {
         try {
+             
+            const authorization =  await this.saludToolsAuthorization()
+            
+            if(isApiError(authorization)) return authorization
+
             const data = JSON.stringify(createAppointmentRequest)
             const settings = {
                 method: "POST",
                 body: data,
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `${authorization}`
                 },
             }
-            const request = await fetch('https://saludtools.carecloud.com.co/integration/sync/event/v1/', settings)
+            const request = await fetch(SaludToolsApiRoutes.integration, settings)
 
             const response: CreateAppointmentResponse = await request.json()
-
+           
             const isError = isSaludToolsApiError(response)
 
             if (isError) {
                 return isError
             }
-
-            console.log("the response", response)
+           
             return response
 
-        } catch (e : any) {
-            console.log(Object.keys(e))
+        } catch (e ) {
+            const error = e as Error
             const isError: ApiError = {
-                error: e.message,
+                error: error.message,
                 code: 500
             }
             return isError
