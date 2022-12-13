@@ -1,5 +1,5 @@
 import { SaludToolsActionType,  SaludToolsEventType } from "../../../../enums/SaludTools";
-import { FlexPatient } from "../../../SaludTools";
+import { SearchPatient } from "../../../SaludTools";
 
 
 interface SearchPatientRequest {
@@ -16,7 +16,7 @@ interface SearchPatientRequest {
     /**
      * 
      */
-    body: FlexPatient
+    body: SearchPatient
 
 }
 

@@ -1,12 +1,12 @@
 import SaludToolsBaseApiResponse from "../../../Api/SaludToolsBaseApiResponse";
-import { PatientReadBody } from "../../../SaludTools";
+import { Patient } from "../../../SaludTools";
 
 interface ReadPatientReponse extends SaludToolsBaseApiResponse {
     
     /**
      * Patient information with extra properties.
      */
-    body: PatientReadBody 
+    body: Patient 
 }
 
 export default ReadPatientReponse

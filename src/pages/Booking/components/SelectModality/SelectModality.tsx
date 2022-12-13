@@ -1,7 +1,7 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 import { Modality } from '../../../../types/BookingPage'
-import { useAppDispatch } from '../../../../redux/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks'
 import { selectModality } from '../../../../redux/slices/bookingPageSlice'
 import { SaludToolsModality } from '../../../../enums/SaludTools'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
@@ -17,8 +17,10 @@ interface SelectModalityProps {
  * Component to select a doctor
  * @returns 
  */
-const SelectModality = ({ handleNext }: SelectModalityProps) : JSX.Element => {
+const SelectModality = ({ handleNext }: SelectModalityProps): JSX.Element => {
 
+  const userEmail = useAppSelector(state => state.user.saludToolsProfile?.email)
+  const userAddress = useAppSelector(state => state.user.saludToolsProfile?.address?.mainAddress)
 
   const allModality: Modality[] = [
     {
@@ -52,14 +54,17 @@ const SelectModality = ({ handleNext }: SelectModalityProps) : JSX.Element => {
    * Depending of modality, we will show the description.
    * We keep it this way to make it posible to translate easier the information.
    */
-  const descriptionToShow = (modality : SaludToolsModality) : string => {
-    switch(modality) {
+  const descriptionToShow = (modality: SaludToolsModality): string | undefined => {
+    if(userEmail == null || userAddress == null) {
+      return undefined
+    } 
+    switch (modality) {
       case SaludToolsModality.Conventional:
         return `Your appointment will be at ${NefrologiaYDialisisSasInfo.name}, ${NefrologiaYDialisisSasInfo.address}.`
-        case SaludToolsModality.Telemedicine: 
-        return 'Your will receive an email to THIS EMAIL to connect via SaludTools.'
-        case SaludToolsModality.Domiciliary:
-          return 'Your appointment will be at your THIS ADDRESS.'
+      case SaludToolsModality.Telemedicine:
+        return `Your will receive an email to ${userEmail} to connect via Saludtools.`
+      case SaludToolsModality.Domiciliary:
+        return `Your appointment will be at your address: ${userAddress}.`
     }
   }
 
@@ -73,13 +78,9 @@ const SelectModality = ({ handleNext }: SelectModalityProps) : JSX.Element => {
 
             const { id, icon, modality } = item
 
-
-
             return (
               <Card key={id} sx={{ width: '100%', maxWidth: 365, m: 2 }}>
                 <CardActionArea onClick={() => modalitySelection(modality)}>
-
-
                   <CardMedia
                     sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 200 }}
                   >
@@ -90,12 +91,10 @@ const SelectModality = ({ handleNext }: SelectModalityProps) : JSX.Element => {
                       {modality}
                     </Typography>
                     <Typography gutterBottom variant="caption" color="text.secondary">
-                     {descriptionToShow(modality)}
+                      {descriptionToShow(modality)}
                     </Typography>
                   </CardContent>
-
                 </CardActionArea>
-
               </Card>)
           })
         }

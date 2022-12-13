@@ -135,8 +135,6 @@ const BookingPage = () : JSX.Element => {
 
     const createAppointmentRequest = await saludToolsAppointmentController.createAppointment(request)
 
-
-
     if (isApiError(createAppointmentRequest)) {
       const { error } = createAppointmentRequest
       setErrorMessage(error)

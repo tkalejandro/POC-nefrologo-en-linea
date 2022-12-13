@@ -1,4 +1,4 @@
-import { PatientReadBody, SearchPatientBody } from "../SaludTools"
+import { Patient, SearchPatientBody } from "../SaludTools"
 
 interface SaludToolsBaseApiResponse {
     /**
@@ -24,7 +24,7 @@ interface SaludToolsBaseApiResponse {
     /**
      * Body response
      */
-    body?: PatientReadBody | SearchPatientBody | unknown
+    body?: Patient | SearchPatientBody | unknown
 }
 
 export default SaludToolsBaseApiResponse

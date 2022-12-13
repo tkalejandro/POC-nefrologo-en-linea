@@ -1,9 +1,14 @@
+import { Address } from ".";
 import { SaludToolsDocumentType, SaludToolsEPS, SaludToolsGender } from "../../enums/SaludTools";
 
 /**
  * Structure when we are Creating of Updating a Patient.
  */
 interface Patient {
+    /**
+     * Id of patient. IF there is no number. Is not created yet.
+     */
+    id?: number
     /**
      * First name of user.
      */
@@ -48,6 +53,10 @@ interface Patient {
      * Users email.
      */
     email?: string
+    /**
+     * Address of patient
+     */
+    address?: Address
     /**
      * Type of insurance. In Colombia is called EPS.
      */

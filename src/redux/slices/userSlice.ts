@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-//import type { PayloadAction } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 import { Patient } from '../../types/SaludTools'
-import { currentPatient } from '../../assets/dummyData/currentPatient'
 
 
 // Define a type for the slice state
@@ -11,7 +10,7 @@ interface UserState {
 
 // Define the initial state using that type
 const initialState: UserState = {
-   saludToolsProfile: currentPatient
+   saludToolsProfile: undefined
 }
 
 export const userSlice = createSlice({
@@ -19,13 +18,14 @@ export const userSlice = createSlice({
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-     
+        setSaludtoolsProfile: (state, action: PayloadAction<Patient>) => {
+            state.saludToolsProfile = action.payload
+        }
     },
 })
 
-// eslint-disable-next-line no-empty-pattern
 export const {
-   
+   setSaludtoolsProfile
 } = userSlice.actions
 
 
