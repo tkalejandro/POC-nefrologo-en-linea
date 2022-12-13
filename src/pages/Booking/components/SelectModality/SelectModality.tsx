@@ -2,7 +2,7 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@
 import React from 'react'
 import { Modality } from '../../../../types/BookingPage'
 import { useAppDispatch } from '../../../../redux/hooks'
-import { selectDoctor, selectModality } from '../../../../redux/slices/bookingPageSlice'
+import { selectModality } from '../../../../redux/slices/bookingPageSlice'
 import { SaludToolsModality } from '../../../../enums/SaludTools'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import DevicesIcon from '@mui/icons-material/Devices';
@@ -17,7 +17,7 @@ interface SelectModalityProps {
  * Component to select a doctor
  * @returns 
  */
-const SelectModality = ({ handleNext }: SelectModalityProps) => {
+const SelectModality = ({ handleNext }: SelectModalityProps) : JSX.Element => {
 
 
   const allModality: Modality[] = [
@@ -52,7 +52,7 @@ const SelectModality = ({ handleNext }: SelectModalityProps) => {
    * Depending of modality, we will show the description.
    * We keep it this way to make it posible to translate easier the information.
    */
-  const descriptionToShow = (modality : SaludToolsModality) => {
+  const descriptionToShow = (modality : SaludToolsModality) : string => {
     switch(modality) {
       case SaludToolsModality.Conventional:
         return `Your appointment will be at ${NefrologiaYDialisisSasInfo.name}, ${NefrologiaYDialisisSasInfo.address}.`

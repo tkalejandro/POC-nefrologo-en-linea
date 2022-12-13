@@ -1,4 +1,4 @@
-type ApiError = {
+interface ApiError {
     /**
      * Error message
      */

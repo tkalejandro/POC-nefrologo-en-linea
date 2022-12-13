@@ -1,7 +1,7 @@
 import { SaludToolsActionType, SaludToolsEventType } from "../../../../enums/SaludTools";
 import { Patient } from "../../../SaludTools";
 
-type UpdatePatientRequest = {
+interface UpdatePatientRequest {
     /**
      * Type of event according SaludTools
      */

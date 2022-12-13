@@ -1,6 +1,6 @@
 import { Sort } from ".";
 
-type Pageable = {
+interface Pageable {
     sort: Sort
     pageNumber: number
     pageSize: number

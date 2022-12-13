@@ -1,6 +1,5 @@
-import { Button, Typography, Box, Divider } from '@mui/material'
+import { Typography, Box, Divider } from '@mui/material'
 import React from 'react'
-import { DashboardGridSizes } from '../../../../constants'
 import { NextAppointmentCard, UserCalendar } from './components'
 
 //RAFCE
@@ -9,10 +8,10 @@ import { NextAppointmentCard, UserCalendar } from './components'
  * This widget will show a calendar and next appointments in order.
  * @returns 
  */
-const AppointmentArea = () => {
+const AppointmentArea = () : JSX.Element => {
 
   return (
-    <Box sx={(theme) => ({ height: '100%' })}>
+    <Box sx={() => ({ height: '100%' })}>
       <UserCalendar />
       <Box sx={{ m: 2 }}>
         <Divider sx={{mb: 2}} />

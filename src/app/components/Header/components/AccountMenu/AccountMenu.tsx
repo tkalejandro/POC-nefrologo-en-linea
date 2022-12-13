@@ -5,12 +5,12 @@ import React from 'react'
  * Everything related to the account
  * @returns 
  */
-const AccountMenu = () => {
+const AccountMenu = () : JSX.Element => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) : void => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = () : void => {
         setAnchorElUser(null);
     };
 

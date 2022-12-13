@@ -1,7 +1,7 @@
 import { SaludToolsActionType, SaludToolsEventType } from "../../../../enums/SaludTools"
 import Appointment from "../../../SaludTools/Appointment"
 
-type CreateAppointmentRequest = {
+interface CreateAppointmentRequest {
 
    /**
      * Type of event according SaludTools. Should be APPOINTMENT.

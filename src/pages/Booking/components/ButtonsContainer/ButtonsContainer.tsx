@@ -12,7 +12,7 @@ interface ButtonsContainerProps {
     handleSubmit: (event: {preventDefault: () => void;}) => Promise<void>
 }
 
-const ButtonsContainer = ({ steps, isStepOptional, activeStep, handleSkip, handleBack, handleNext, handleReset, handleSubmit }: ButtonsContainerProps) => {
+const ButtonsContainer = ({ steps, isStepOptional, activeStep, handleSkip, handleBack, handleNext, handleReset, handleSubmit }: ButtonsContainerProps) : JSX.Element => {
 
     const almostFinish = activeStep === steps.length - 1
     const stepsFinished = activeStep === steps.length
@@ -38,7 +38,7 @@ const ButtonsContainer = ({ steps, isStepOptional, activeStep, handleSkip, handl
                                 Skip
                             </Button>
                         )}
-                        <Button onClick={almostFinish ? handleSubmit : handleNext}>
+                        <Button onClick={() => almostFinish ? handleSubmit : handleNext}>
                             {almostFinish ? 'Confirm' : 'Next'}
                         </Button>
                     </>

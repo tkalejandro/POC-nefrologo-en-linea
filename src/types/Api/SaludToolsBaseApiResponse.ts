@@ -1,4 +1,4 @@
-type SaludToolsBaseApiResponse = {
+interface SaludToolsBaseApiResponse {
     /**
      * Id of Patient. SEEMS THERE IS NO USE.
      */

@@ -8,7 +8,7 @@ import React from 'react'
  * This widget will welcome the user
  * @returns 
  */
-const Welcome = () => {
+const Welcome = () : JSX.Element => {
   return (
     <Box sx={{ m: 2}}>
         <Typography variant="h6" component="h2" sx={{}}>

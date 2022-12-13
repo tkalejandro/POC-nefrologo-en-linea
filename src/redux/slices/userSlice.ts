@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-
+//import type { PayloadAction } from '@reduxjs/toolkit'
 import { Patient } from '../../types/SaludTools'
 import { currentPatient } from '../../assets/dummyData/currentPatient'
 
@@ -20,10 +19,11 @@ export const userSlice = createSlice({
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-      
+     
     },
 })
 
+// eslint-disable-next-line no-empty-pattern
 export const {
    
 } = userSlice.actions

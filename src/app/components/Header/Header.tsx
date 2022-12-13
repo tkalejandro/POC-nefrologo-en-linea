@@ -10,7 +10,7 @@ import { Theme } from '@mui/material';
  * Header. It will contain all the navigation from pages to account pages.
  * @returns 
  */
-const Header = () => {
+const Header = () : JSX.Element => {
 
   return (
     <AppBar variant="outlined" position="static" elevation={0}

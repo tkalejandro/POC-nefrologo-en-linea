@@ -14,10 +14,10 @@ class SaludToolsAppointmentController extends ApiServices {
 
     async createAppointment(createAppointmentRequest: CreateAppointmentRequest): Promise<CreateAppointmentResponse | ApiError> {
         try {
-             
-            const authorization =  await this.saludToolsAuthorization()
-            
-            if(isApiError(authorization)) return authorization
+
+            const authorization = await this.saludToolsAuthorization()
+
+            if (isApiError(authorization)) return authorization
 
             const data = JSON.stringify(createAppointmentRequest)
             const settings = {
@@ -30,17 +30,17 @@ class SaludToolsAppointmentController extends ApiServices {
             }
             const request = await fetch(SaludToolsApiRoutes.integration, settings)
 
-            const response: CreateAppointmentResponse = await request.json()
-           
+            const response = await request.json() as CreateAppointmentResponse
+
             const isError = isSaludToolsApiError(response)
 
             if (isError) {
                 return isError
             }
-           
+
             return response
 
-        } catch (e ) {
+        } catch (e) {
             const error = e as Error
             const isError: ApiError = {
                 error: error.message,
@@ -50,21 +50,21 @@ class SaludToolsAppointmentController extends ApiServices {
         }
     }
 
-    readAppointment() {
-        return 'Get Appoint'
-    }
+    // readAppointment() {
+    //     return 'Get Appoint'
+    // }
 
-    updateAppointment() {
-        return ' Update Appoint'
-    }
+    // updateAppointment() {
+    //     return ' Update Appoint'
+    // }
 
-    searchAppointments() {
-        return 'Array of Appointments'
-    }
+    // searchAppointments() {
+    //     return 'Array of Appointments'
+    // }
 
-    deleteAppointment() {
-        return ' Delete Appointment'
-    }
+    // deleteAppointment() {
+    //     return ' Delete Appointment'
+    // }
 }
 
 export const saludToolsAppointmentController = new SaludToolsAppointmentController()

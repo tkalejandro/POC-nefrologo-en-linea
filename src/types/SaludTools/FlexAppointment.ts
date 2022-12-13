@@ -3,7 +3,7 @@ import { SaludToolsClinic, SaludToolsDocumentType, SaludToolsModality, SaludTool
 /**
  * Same as Appointment, but all properties are not required. Useful for SEARCH
  */
-type FlexAppointment = {
+interface FlexAppointment {
 
     /**
      * Id of the appointment.

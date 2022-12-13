@@ -8,13 +8,13 @@ const Booking = lazy(() => import('../../../pages/Booking/BookingPage'))
 const Test = lazy(() => import('../../../pages/Test/TestPage'))
 
 //To do!
-const Loading = () => <p>Loading ...</p>;
+const Loading = () : JSX.Element => <p>Loading ...</p>;
 
 /**
  * Here wwe will storage all the routes
  * @returns 
  */
-const Main = () => {
+const Main = () : JSX.Element => {
     return (
         <Container
             maxWidth="xl"

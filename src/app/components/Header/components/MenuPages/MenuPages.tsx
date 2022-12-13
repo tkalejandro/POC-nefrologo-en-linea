@@ -1,7 +1,6 @@
 import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box } from '@mui/system';
-import { Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { Button, IconButton, Menu, MenuItem, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { RoutesPath } from '../../../../../pages/Routes';
 
@@ -10,13 +9,13 @@ import { RoutesPath } from '../../../../../pages/Routes';
  * All related pages user might be ablee to navigate
  * @returns 
  */
-const MenuPages = () => {
+const MenuPages = (): JSX.Element => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
         setAnchorElNav(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (): void => {
         setAnchorElNav(null);
     };
 
@@ -74,7 +73,7 @@ const MenuPages = () => {
                 >
                     {pages.map((page) => (
                         <MenuItem component={Link} to={assignPath(page)} key={page} onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center">{page}</Typography>
+                            <Typography textAlign="center">{page}</Typography>
                         </MenuItem>
                     ))}
                 </Menu>
@@ -82,16 +81,14 @@ const MenuPages = () => {
             {/* DESKTOP */}
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
-                   
-                        <Button
+                    <Button
                         component={Link} to={assignPath(page)}
-                            key={page}
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, display: 'block' }}
-                        >
-                            {page}
-                        </Button>
-                    
+                        key={page}
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, display: 'block' }}
+                    >
+                        {page}
+                    </Button>
                 ))}
             </Box>
         </>

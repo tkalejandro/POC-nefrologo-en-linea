@@ -1,6 +1,6 @@
 import { SaludToolsModality } from "../../enums/SaludTools";
 
-type Modality = {
+interface Modality {
     /**
      * ID
      */

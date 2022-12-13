@@ -1,6 +1,6 @@
 import { TypesOfSpeciality } from "../../enums/NefrologiaYDialisisSas";
 
-type DoctorInfo = {
+interface DoctorInfo {
     /**
      * Will be the Colombian identification number.  Cedula or any other.
      */

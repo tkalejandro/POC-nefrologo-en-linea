@@ -16,7 +16,7 @@ interface SelectDoctorProps {
  * Component to select a doctor
  * @returns 
  */
-const SelectDoctor = ({ handleNext }: SelectDoctorProps) => {
+const SelectDoctor = ({ handleNext }: SelectDoctorProps) : JSX.Element => {
 
   const availableDoctors: DoctorInfo[] = [
     {

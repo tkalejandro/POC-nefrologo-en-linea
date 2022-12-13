@@ -1,6 +1,6 @@
 import { SaludToolsActionType, SaludToolsEventType } from "../../../../enums/SaludTools"
 
-type DeleteAppointmentRequest = {
+interface DeleteAppointmentRequest {
 
    /**
      * Type of event according SaludTools. Should be APPOINTMENT.

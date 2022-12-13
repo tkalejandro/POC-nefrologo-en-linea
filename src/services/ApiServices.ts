@@ -17,12 +17,12 @@ export class ApiServices {
      * Function to get Authorization to use SaludTools.
      * @returns Authorization token
      */
-    async saludToolsAuthorization(): Promise<string | ApiError | void> {
+    async saludToolsAuthorization(): Promise<string | ApiError> {
         try {
             const {REACT_APP_SALUDTOOLS_KEY, REACT_APP_SALUDTOOLS_SECRET} = process.env
 
             if(REACT_APP_SALUDTOOLS_KEY == null || REACT_APP_SALUDTOOLS_SECRET == null) {
-                return
+                return ''
             }
 
             const authorization : SaludToolsAuthorizationRequest = {
@@ -39,7 +39,7 @@ export class ApiServices {
             }
             const request = await fetch(SaludToolsApiRoutes.authorization, settings)
 
-            const response: SaludToolsAuthorizationResponse | SaludToolsAuthorizationError = await request.json()
+            const response = await request.json() as SaludToolsAuthorizationResponse | SaludToolsAuthorizationError
 
             if (isSaludToolsAuthorizationError(response)) {
                 const {error, status} = response

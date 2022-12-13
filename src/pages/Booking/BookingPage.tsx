@@ -13,7 +13,7 @@ import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectMod
  * Page where the user will be able to make an appointment
  * @returns 
  */
-const BookingPage = () => {
+const BookingPage = () : JSX.Element => {
 
 
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -25,16 +25,16 @@ const BookingPage = () => {
    */
   const steps = ['Select Modality', 'Select Doctor', 'Select Time'];
 
-  const isStepOptional = (step: number) => {
+  const isStepOptional = (_step: number) : boolean => {
     //return step === 1;
     return false
   };
 
-  const isStepSkipped = (step: number) => {
+  const isStepSkipped = (step: number) : boolean => {
     return skipped.has(step);
   };
 
-  const handleNext = () => {
+  const handleNext = () : void => {
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -45,11 +45,11 @@ const BookingPage = () => {
     setSkipped(newSkipped);
   };
 
-  const handleBack = () => {
+  const handleBack = () : void => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () => {
+  const handleSkip = () : void => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
@@ -64,7 +64,7 @@ const BookingPage = () => {
     });
   };
 
-  const handleReset = () => {
+  const handleReset = () : void => {
     setActiveStep(0);
   };
 
@@ -99,7 +99,7 @@ const BookingPage = () => {
    * Function that handle a creation of a new appointment
    * @returns 
    */
-  const handleSubmit = async (event: { preventDefault: () => void; }) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) : Promise<void> => {
     event.preventDefault()
     if (bookingPreRequest == null || currentUserSaludToolsProfile == null) {
       return
