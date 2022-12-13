@@ -26,14 +26,14 @@ interface SearchAppointmentRequest {
         } 
 
         /**
-         * Starting Date and Time of appointment.
+         * Starting Date of appointment. 2022-12-01
          */
-        startAppointment?: Date
+        startAppointment: string
 
         /**
-         * Ending Date and Time of appointment.
+         * Ending Date  of appointment.  2022-12-01
          */
-        endAppointment?: Date
+        endAppointment: string 
 
         /**
          * Document Type of patient.
@@ -78,7 +78,7 @@ interface SearchAppointmentRequest {
         /**
          * Clinic where the appointment wil be done.
          */
-        clinic?: SaludToolsClinic
+        clinic: SaludToolsClinic
 
         /**
          * Comments of the patient regarding the appointment.
