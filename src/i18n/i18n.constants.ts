@@ -1,6 +1,6 @@
 export const namespaces = {
     pages: {
-      booking: "pages.booking",
+      dashboard: "pages.dashboard",
     },
     common: "common",
   };
