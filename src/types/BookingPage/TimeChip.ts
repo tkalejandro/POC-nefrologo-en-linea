@@ -1,4 +1,4 @@
-type TimeChip = {
+interface TimeChip {
     /**
      * Time in this format hh:mm.  20:00, 20:45.
      */

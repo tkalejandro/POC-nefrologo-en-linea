@@ -7,8 +7,9 @@ import { Copyright, SocialMedia } from './components';
  * Footer, it will show all connectio related to the company.
  * @returns 
  */
-const Footer = () => {
+const Footer = () : JSX.Element => {
   const { address, phone, email } = NefrologiaYDialisisSasInfo
+ 
   return (
     <Paper elevation={2} sx={(theme : Theme) => ({
       py: 2,

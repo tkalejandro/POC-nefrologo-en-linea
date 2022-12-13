@@ -6,7 +6,7 @@ import { AppointmentArea, NewAppointment, UrgentCommunication, Welcome } from '.
  * Users Dashboard
  * @returns 
  */
-const DashboardPage = () => {
+const DashboardPage = () : JSX.Element => {
 
   /**
    * The idea is to have a useful dashboard for the user.
@@ -34,7 +34,7 @@ const DashboardPage = () => {
   /**
    * Item Component.
    */
-  const Item = styled(Paper)(({ theme }) => ({
+  const Item = styled(Paper)({
     // This will give the color to all texts inside components
     color: theme.palette.text.secondary,
     //margin: spacing,
@@ -45,7 +45,7 @@ const DashboardPage = () => {
     '& h3': {
       color: theme.palette.primary.light
     },
-  }));
+  });
 
   /**
    * Function to repeat string information inside the grid area

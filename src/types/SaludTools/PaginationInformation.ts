@@ -1,6 +1,6 @@
 import { Pageable, Sort } from "."
 
-type PaginationInformation = {
+interface PaginationInformation {
      /**
      * Pagination information.
      */

@@ -1,6 +1,3 @@
-import ApiError from "../types/Api/ApiError"
-
-
 /**
  * Service that will talk to SaludTools controller..
  */

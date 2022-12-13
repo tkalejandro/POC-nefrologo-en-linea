@@ -1,7 +1,7 @@
 /**
  * You can find key and secret inside SaludTools app.
  */
-type SaludToolsAuthorizationRequest = {
+interface SaludToolsAuthorizationRequest {
     /**
      * Key for authorization.
      */

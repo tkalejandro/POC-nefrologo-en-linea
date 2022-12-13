@@ -6,7 +6,7 @@ import { selectDateTime } from '../../../../redux/slices/bookingPageSlice';
 import { StartingEndingDateTime } from '../../../../types/BookingPage';
 import { DateSelection, TimeSelection } from './components'
 
-const Schedule = () => {
+const Schedule = () : JSX.Element => {
 
   const dispatch = useAppDispatch()
 
@@ -15,9 +15,9 @@ const Schedule = () => {
   //Interval of 45 mins
   const interval = 45
 
-  const showDate = (): string | null => {
+  const showDate = (): string => {
     if (dateValue == null) {
-      return null
+      return ''
     }
     return dateValue.format('ll')
   }

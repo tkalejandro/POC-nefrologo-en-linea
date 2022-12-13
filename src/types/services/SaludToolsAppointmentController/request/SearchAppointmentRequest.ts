@@ -1,7 +1,6 @@
 import { SaludToolsActionType,  SaludToolsClinic,  SaludToolsDocumentType, SaludToolsEventType, SaludToolsModality, SaludToolsNotificationState, SaludToolsStateAppointment } from "../../../../enums/SaludTools"
-import { Pageable } from "../../../SaludTools"
 
-type SearchAppointmentRequest = {
+interface SearchAppointmentRequest {
 
    /**
      * Type of event according SaludTools. Should be APPOINTMENT.

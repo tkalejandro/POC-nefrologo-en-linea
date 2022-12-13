@@ -3,7 +3,7 @@ import { SaludToolsDocumentType, SaludToolsEPS, SaludToolsGender } from "../../e
 /**
  * Structure when we are Creating of Updating a Patient.
  */
-type Patient = {
+interface Patient {
     /**
      * First name of user.
      */

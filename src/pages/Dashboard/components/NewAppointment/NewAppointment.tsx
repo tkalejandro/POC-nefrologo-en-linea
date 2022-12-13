@@ -10,9 +10,9 @@ import { RoutesPath } from '../../../Routes';
  * This widget will welcome the user
  * @returns 
  */
-const NewAppointment = () => {
+const NewAppointment = () : JSX.Element => {
     return (
-        <Box sx={(theme) => ({ height: '100%' })}>
+        <Box sx={{ height: '100%' }}>
             <Button
                 component={Link}
                 to={RoutesPath.booking}

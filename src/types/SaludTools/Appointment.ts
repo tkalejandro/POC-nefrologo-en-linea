@@ -1,7 +1,7 @@
 import { NefrologiaYDialisisAppointmentTypes } from "../../enums/NefrologiaYDialisisSas";
 import { SaludToolsClinic, SaludToolsDocumentType, SaludToolsModality, SaludToolsNotificationState, SaludToolsStateAppointment } from "../../enums/SaludTools";
 
-type Appointment = {
+interface Appointment {
     /**
      * Starting Date and Time of appointment. yyyy-mm-dd HH:mm -> 2021-04-30 08:00
      */

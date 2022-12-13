@@ -3,7 +3,7 @@ import { SaludToolsDocumentType, SaludToolsEPS, SaludToolsGender } from "../../e
 /**
  * Same as Patient, but all properties are not required. Useful for SEARCH
  */
-type FlexPatient = {
+interface FlexPatient {
     /**
      * First name of user.
      */

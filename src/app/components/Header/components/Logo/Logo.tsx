@@ -7,7 +7,7 @@ import { NefrologiaYDialisisSasInfo } from '../../../../../constants';
  * Logo of Comapny.
  * @returns 
  */
-const Logo = () => {
+const Logo = () : JSX.Element => {
     return (
         <Box sx={{
             '& > img': {

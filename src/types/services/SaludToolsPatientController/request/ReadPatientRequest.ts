@@ -1,6 +1,6 @@
 import { SaludToolsActionType, SaludToolsDocumentType, SaludToolsEventType } from "../../../../enums/SaludTools";
 
-type ReadPatientRequest = {
+interface ReadPatientRequest {
     /**
      * Type of event according SaludTools
      */

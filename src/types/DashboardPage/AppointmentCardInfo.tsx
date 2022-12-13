@@ -1,6 +1,6 @@
 import { NefrologiaYDialisisAppointmentTypes, TypesOfSpeciality } from "../../enums/NefrologiaYDialisisSas";
 
-type AppointmentCardInfo = {
+interface AppointmentCardInfo {
     /**
      * Id of card
      */

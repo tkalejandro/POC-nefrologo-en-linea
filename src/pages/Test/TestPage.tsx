@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TestPage = () => {
+const TestPage = () : JSX.Element => {
   return (
     <div>TestPage</div>
   )

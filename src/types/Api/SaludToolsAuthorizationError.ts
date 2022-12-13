@@ -1,4 +1,4 @@
-type SaludToolsAuthorizationError = {
+interface SaludToolsAuthorizationError {
     timestamp: Date
     status: number
     error: string

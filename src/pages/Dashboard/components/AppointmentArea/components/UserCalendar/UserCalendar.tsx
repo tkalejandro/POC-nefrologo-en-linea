@@ -11,7 +11,7 @@ import { Box, Typography } from '@mui/material';
  * Calendar of the user, it will show a history of things that has happened with user.
  * @returns 
  */
-const UserCalendar = () => {
+const UserCalendar = () : JSX.Element => {
   const [value, setValue] = React.useState<Dayjs | null>(dayjs());
 
   return (
@@ -21,10 +21,10 @@ const UserCalendar = () => {
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
           value={value}
-          onChange={(newValue) => {
+          onChange={(newValue) : void => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) : JSX.Element => <TextField {...params} />}
         />
       </LocalizationProvider>
     </Box>

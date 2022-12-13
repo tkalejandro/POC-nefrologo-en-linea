@@ -1,6 +1,6 @@
 import { SaludToolsActionType,  SaludToolsClinic,  SaludToolsDocumentType, SaludToolsEventType, SaludToolsModality, SaludToolsNotificationState, SaludToolsStateAppointment } from "../../../../enums/SaludTools"
 
-type UpdateAppointmentRequest = {
+interface UpdateAppointmentRequest {
 
    /**
      * Type of event according SaludTools. Should be APPOINTMENT.

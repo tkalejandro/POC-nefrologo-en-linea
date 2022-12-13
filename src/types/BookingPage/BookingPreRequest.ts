@@ -1,6 +1,6 @@
 import { SaludToolsDocumentType, SaludToolsModality } from "../../enums/SaludTools";
 
-type BookingPreRequest = {
+interface BookingPreRequest {
       /**
       * Starting Date and Time of appointment. yyyy-mm-dd HH:mm -> 2021-04-30 08:00
       */

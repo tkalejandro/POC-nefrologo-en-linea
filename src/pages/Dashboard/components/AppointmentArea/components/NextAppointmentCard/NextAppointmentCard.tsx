@@ -1,15 +1,14 @@
-import { Card, Chip, Paper, Typography, } from '@mui/material'
+import { Chip, Paper, Typography, } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { NefrologiaYDialisisAppointmentTypes, TypesOfSpeciality } from '../../../../../../enums/NefrologiaYDialisisSas'
 import { AppointmentCardInfo } from '../../../../../../types/DashboardPage'
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 /**
  * It render future appointments
  * @returns 
  */
-const NextAppointmentCard = () => {
+const NextAppointmentCard = () : JSX.Element => {
 
 
     const dummyArray: AppointmentCardInfo[] = [
@@ -25,7 +24,7 @@ const NextAppointmentCard = () => {
         <Box>
             {
                 dummyArray.map((item: AppointmentCardInfo) => {
-                    const { id, doctor, specialist, appointment, icon, date } = item
+                    const { id, doctor, specialist, appointment, date } = item
 
                     const isOnline = (): boolean => {
                         switch (appointment) {

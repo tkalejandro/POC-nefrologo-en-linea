@@ -15,10 +15,10 @@ interface DateSelectionProps {
  * This is where user pick a date for the next appointment
  * @returns 
  */
-const DateSelection = ({ dateValue, setDateValue }: DateSelectionProps) => {
+const DateSelection = ({ dateValue, setDateValue }: DateSelectionProps) : JSX.Element => {
 
 
-    const isWeekend = (date: Dayjs) => {
+    const isWeekend = (date: Dayjs) : boolean => {
         const day = date.day();
 
         return day === 0 || day === 6;

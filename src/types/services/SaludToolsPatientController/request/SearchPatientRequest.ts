@@ -2,7 +2,7 @@ import { SaludToolsActionType,  SaludToolsEventType } from "../../../../enums/Sa
 import { FlexPatient } from "../../../SaludTools";
 
 
-type SearchPatientRequest = {
+interface SearchPatientRequest {
     /**
      * Type of event according SaludTools
      */

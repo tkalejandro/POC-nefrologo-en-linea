@@ -2,6 +2,8 @@ import { Box, Chip, Stack } from '@mui/material'
 import React from 'react'
 import { TimeChip } from '../../../../../../types/BookingPage';
 
+
+type Color = "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | undefined
 interface TimeSelectionProps {
     timeValue: string | null
     setTimeValue: (value : string | null) => void
@@ -12,13 +14,13 @@ interface TimeSelectionProps {
  * This component will choose the time. This format 20:45
  * @returns 
  */
-const TimeSelection = ({ timeValue, setTimeValue, interval }: TimeSelectionProps) => {
+const TimeSelection = ({ timeValue, setTimeValue, interval }: TimeSelectionProps) : JSX.Element => {
 
     const printTimes = (): TimeChip[] => {
         const result: TimeChip[] = [];
         for (let i = 0; i <= 60 * 24; i += interval) {
-            let hours = Math.floor(i / 60);
-            let minutes = i % 60;
+            const hours = Math.floor(i / 60);
+            const minutes = i % 60;
 
             //This restriction should be consider with -5 GMT. Still need to think how this will be done.
             const minHour = 7
@@ -60,7 +62,8 @@ const TimeSelection = ({ timeValue, setTimeValue, interval }: TimeSelectionProps
                     times.map((t: TimeChip) => {
 
                         const { time, available } = t
-                        const isSelected = () =>  time === timeValue ? 'primary' : 'secondary'
+
+                        const isSelected = () : Color =>  time === timeValue ? 'primary' : 'secondary'
                         return (
                             <Chip
                             disabled={!available}

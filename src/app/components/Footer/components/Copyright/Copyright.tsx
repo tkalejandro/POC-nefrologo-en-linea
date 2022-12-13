@@ -7,7 +7,7 @@ import { NefrologiaYDialisisSasInfo } from '../../../../../constants';
  * Copyright
  * @returns 
  */
-const Copyright = () => {
+const Copyright = () : JSX.Element => {
   const currentYear = new Date().getFullYear()
   return (
     <Box>

@@ -11,7 +11,7 @@ interface ConfirmationProps {
  * This component will let know the user that there was an answer. good or bad.
  * @returns 
  */
-const Confirmation = ({ errorMessage }: ConfirmationProps) => {
+const Confirmation = ({ errorMessage }: ConfirmationProps) : JSX.Element => {
 
 
   return (

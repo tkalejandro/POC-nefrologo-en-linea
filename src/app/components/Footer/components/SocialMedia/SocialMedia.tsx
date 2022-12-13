@@ -6,7 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Box } from '@mui/system'
 import { NefrologiaYDialisisSasInfo } from '../../../../../constants';
 
-const SocialMedia = () => {
+const SocialMedia = () : JSX.Element => {
     const { facebookURL, linkedInURL, instagramURL } = NefrologiaYDialisisSasInfo
     return (
         <Box aria-label="outlined button group">
