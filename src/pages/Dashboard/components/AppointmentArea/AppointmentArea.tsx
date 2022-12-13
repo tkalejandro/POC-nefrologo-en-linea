@@ -11,7 +11,7 @@ import { NextAppointmentCard, UserCalendar } from './components'
 const AppointmentArea = () : JSX.Element => {
 
   return (
-    <Box sx={() => ({ height: '100%' })}>
+    <Box sx={{ height: '100%' }}>
       <UserCalendar />
       <Box sx={{ m: 2 }}>
         <Divider sx={{mb: 2}} />

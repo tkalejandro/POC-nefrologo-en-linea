@@ -1,6 +1,6 @@
 import {  Box, styled, Paper, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
-import { AppointmentArea, NewAppointment, UrgentCommunication, Welcome } from './components';
+import { AppointmentArea, NewAppointment, UrgentCommunication, Welcome, UserInformation } from './components';
 
 /**
  * Users Dashboard
@@ -121,9 +121,9 @@ const DashboardPage = () : JSX.Element => {
           <AppointmentArea />
         </Item>
         <Item sx={{ gridArea: 'ui' }}>
-          <Box sx={{ m: 2 }}>
-            User information / Number of appointments left.
-          </Box>
+ 
+          <UserInformation />
+
         </Item>
         <Item sx={{ gridArea: 'uc' }}>
           <UrgentCommunication />
