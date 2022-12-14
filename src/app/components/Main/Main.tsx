@@ -1,7 +1,7 @@
 import { Container } from '@mui/system'
 import React, { lazy, Suspense, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
-import { AppRoutes } from '../../../pages/routes'
+import { AppRoutes } from '../../../pages/xroutes'
 import { useAppDispatch } from '../../../redux/hooks'
 import { setSaludtoolsProfile } from '../../../redux/slices/userSlice'
 import { isApiError } from '../../../services/ApiError'
