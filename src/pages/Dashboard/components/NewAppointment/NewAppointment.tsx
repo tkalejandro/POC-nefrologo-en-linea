@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../../../xroutes';
+import { AppRoutes } from '../../../routes';
 import { useTranslation } from 'react-i18next';
 import { namespaces } from '../../../../i18n/i18n.constants';
 
