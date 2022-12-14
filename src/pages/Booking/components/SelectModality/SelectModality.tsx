@@ -8,6 +8,8 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import DevicesIcon from '@mui/icons-material/Devices';
 import HouseIcon from '@mui/icons-material/House';
 import { NefrologiaYDialisisSasInfo } from '../../../../constants'
+import { useTranslation } from 'react-i18next'
+import { namespaces } from '../../../../i18n/i18n.constants'
 
 interface SelectModalityProps {
   handleNext: () => void
@@ -18,6 +20,8 @@ interface SelectModalityProps {
  * @returns 
  */
 const SelectModality = ({ handleNext }: SelectModalityProps): JSX.Element => {
+
+  const { t } = useTranslation(namespaces.pages.booking)
 
   const userEmail = useAppSelector(state => state.user.saludToolsProfile?.email)
   const userAddress = useAppSelector(state => state.user.saludToolsProfile?.address?.mainAddress)
@@ -59,18 +63,44 @@ const SelectModality = ({ handleNext }: SelectModalityProps): JSX.Element => {
       return undefined
     } 
     switch (modality) {
-      case SaludToolsModality.Conventional:
-        return `Your appointment will be at ${NefrologiaYDialisisSasInfo.name}, ${NefrologiaYDialisisSasInfo.address}.`
-      case SaludToolsModality.Telemedicine:
-        return `Your will receive an email to ${userEmail} to connect via Saludtools.`
-      case SaludToolsModality.Domiciliary:
-        return `Your appointment will be at your address: ${userAddress}.`
+      case SaludToolsModality.Conventional:{
+        const text = t("selectModality.conventional.description", {companyName: NefrologiaYDialisisSasInfo.name, companyAddress: NefrologiaYDialisisSasInfo.address})
+        return text 
+      }
+      case SaludToolsModality.Telemedicine:{
+        const text = t("selectModality.telemedicine.description", {userEmail})
+        return text 
+      }
+      case SaludToolsModality.Domiciliary:{
+        const text = t("selectModality.domiciliary.description", {userAddress})
+        return text }
     }
+  }
+
+  const titleToShow = (modality: SaludToolsModality) : string => {
+    let title : string;
+    switch (modality) {
+      case SaludToolsModality.Conventional:{
+        title = 'selectModality.conventional.title' 
+        break;
+      }
+      case SaludToolsModality.Telemedicine:{
+      title = 'selectModality.telemedicine.title' 
+      break;
+      }
+      case SaludToolsModality.Domiciliary:
+        title = 'selectModality.domiciliary.title' 
+        break
+    }
+
+    const translatedTitle = t(title)
+
+    return translatedTitle
   }
 
   return (
     <Box sx={{ flex: 1 }}>
-      <Typography variant="h5" color="primary" sx={{ mt: 2, mb: 1 }}>Select Modality</Typography>
+      <Typography variant="h5" color="primary" sx={{ mt: 2, mb: 1 }}>{t("steps.selectModality")}</Typography>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
         {
@@ -88,7 +118,7 @@ const SelectModality = ({ handleNext }: SelectModalityProps): JSX.Element => {
                   </CardMedia>
                   <CardContent sx={{ textAlign: 'center', height: 100 }}>
                     <Typography gutterBottom variant="subtitle2" color="primary">
-                      {modality}
+                      {titleToShow(modality)}
                     </Typography>
                     <Typography gutterBottom variant="caption" color="text.secondary">
                       {descriptionToShow(modality)}

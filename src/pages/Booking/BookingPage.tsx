@@ -1,7 +1,9 @@
 import { Box, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { NefrologiaYDialisisAppointmentTypes } from '../../enums/NefrologiaYDialisisSas';
 import { SaludToolsActionType, SaludToolsClinic, SaludToolsEventType, SaludToolsNotificationState, SaludToolsStateAppointment } from '../../enums/SaludTools';
+import { namespaces } from '../../i18n/i18n.constants';
 import { useAppSelector } from '../../redux/hooks';
 import { isApiError } from '../../services/ApiError';
 import { saludToolsAppointmentController } from '../../services/SaludToolsAppointmentController';
@@ -13,28 +15,32 @@ import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectMod
  * Page where the user will be able to make an appointment
  * @returns 
  */
-const BookingPage = () : JSX.Element => {
+const BookingPage = (): JSX.Element => {
 
-
+  const { t } = useTranslation(namespaces.pages.booking)
   const [activeStep, setActiveStep] = useState<number>(0);
   const [skipped, setSkipped] = useState(new Set<number>());
   const [errorMessage, setErrorMessage] = useState<string | undefined>()
 
   /**
-   * Steps of the process
+   * Steps of the process. This are translation paths.
    */
-  const steps = ['Select Modality', 'Select Doctor', 'Select Time'];
+  const steps = [
+    'steps.selectModality',
+    'steps.selectDoctor',
+    'steps.selectDateTime'
+  ];
 
-  const isStepOptional = (_step: number) : boolean => {
+  const isStepOptional = (_step: number): boolean => {
     //return step === 1;
     return false
   };
 
-  const isStepSkipped = (step: number) : boolean => {
+  const isStepSkipped = (step: number): boolean => {
     return skipped.has(step);
   };
 
-  const handleNext = () : void => {
+  const handleNext = (): void => {
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -45,11 +51,11 @@ const BookingPage = () : JSX.Element => {
     setSkipped(newSkipped);
   };
 
-  const handleBack = () : void => {
+  const handleBack = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () : void => {
+  const handleSkip = (): void => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
@@ -64,7 +70,7 @@ const BookingPage = () : JSX.Element => {
     });
   };
 
-  const handleReset = () : void => {
+  const handleReset = (): void => {
     setActiveStep(0);
   };
 
@@ -99,7 +105,7 @@ const BookingPage = () : JSX.Element => {
    * Function that handle a creation of a new appointment
    * @returns 
    */
-  const handleSubmit = async (event: { preventDefault: () => void; }) : Promise<void> => {
+  const handleSubmit = async (event: { preventDefault: () => void; }): Promise<void> => {
     event.preventDefault()
     if (bookingPreRequest == null || currentUserSaludToolsProfile == null) {
       return
@@ -153,7 +159,7 @@ const BookingPage = () : JSX.Element => {
           } = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
+              <Typography variant="caption">{t("optional")}</Typography>
             );
           }
           if (isStepSkipped(index)) {
@@ -161,7 +167,7 @@ const BookingPage = () : JSX.Element => {
           }
           return (
             <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+              <StepLabel {...labelProps}>{t(label)}</StepLabel>
             </Step>
           );
         })}

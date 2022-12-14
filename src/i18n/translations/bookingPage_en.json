@@ -1,0 +1,42 @@
+{
+    "optional": "Optional",
+    "steps": {
+        "selectModality": "Select modality",
+        "selectDoctor": "Select doctor",
+        "selectDateTime": "Date / Time"
+    },
+    "buttonsContainer":{
+        "back": "Back",
+        "skip": "Skip",
+        "confirm": "Confirm",
+        "next": "Next"
+    },
+    "confirmation": {
+        "errorMessage": "Oops, there was an error.",
+        "successMessage": "Appointment successfull",
+        "successDescription":"You have a new appointment at {{date}} {{time}}. You will receive a confirmation email to {{email}}",
+        "tryAgain": "Try again",
+        "okay": "Okay"
+    },
+    "selectDoctor": {
+        "speciality": {
+            "general": "General",
+            "nephrologist": "Nephrologist",
+            "nutritionist": "Nutritionist"
+        }
+    },
+    "selectModality": {
+        "conventional": {
+            "title": "Conventional",
+            "description": "Your appointment will be at {{companyName}}, {{companyAddress}}."
+        },
+        "telemedicine": {
+            "title": "Telemedicine",
+            "description": "Your will receive an email to {{userEmail}} to connect via Saludtools."
+        },
+        "domiciliary": {
+            "title": "Domiciliary",
+            "description": "Your appointment will be at your address: {{userAddress}}."
+        }
+    }
+}
