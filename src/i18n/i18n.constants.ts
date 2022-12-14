@@ -3,7 +3,7 @@ export const namespaces = {
       booking: "pages.booking",
       dashboard: "pages.dashboard",
     },
-    common: "common",
+    app: "app",
   };
   
   export const languages = {
