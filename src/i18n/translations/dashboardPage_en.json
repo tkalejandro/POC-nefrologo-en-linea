@@ -1,0 +1,31 @@
+{
+    "welcome": {
+        "title": "Hello {{firstName}}",
+        "description": "Welcome to your dashboard."
+    },
+    "newAppointment": "New appointment",
+    "urgentCommunication": {
+        "title": "Do you have an urgent issue?"
+    },
+    "appointmentArea": {
+        "nextAppointment": {
+            "title": "Next appointments",
+            "types":{
+                "control": "Control",
+                "firstTime": "First time",
+                "generic": "General"
+            },
+            "speciality": {
+                "general": "General",
+                "nephrology": "Nephrology",
+                "nutritionist": "Nutritionist"
+            }
+        },
+        "userCalendar": {
+            "title": "Your calendar"
+        }
+    },
+    "userInformation": {
+
+    }
+}

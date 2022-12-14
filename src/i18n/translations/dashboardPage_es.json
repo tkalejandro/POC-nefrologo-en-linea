@@ -1,0 +1,32 @@
+{
+    "welcome": {
+        "title": "Hola {{firstName}}",
+        "description": "Bienvenido a tu portal."
+    },
+    "newAppointment": "Agendar una nueva cita",
+    "urgentCommunication": {
+        "title": "¿Tienes una urgencia?"
+    },
+    "appointmentArea": {
+        "nextAppointment": {
+            "title": "Proximas citas",
+            "types":{
+                "control": "Control",
+                "firstTime": "Primera vez",
+                "generic": "General"
+            },
+            "speciality": {
+                "general": "General",
+                "nephrology": "Nefrologia",
+                "nutritionist": "Nutricionista"
+            }
+        },
+        "userCalendar": {
+            "title": "Calendario"
+        }
+      
+    },
+    "userInformation": {
+       
+    }
+}

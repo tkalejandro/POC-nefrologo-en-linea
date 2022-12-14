@@ -13,6 +13,12 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   root: true,
   rules: {
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        {
+          "checksVoidReturn": false
+        }
+      ],
     "@typescript-eslint/no-floating-promises": "off",
      // disable the rule for all files
      "@typescript-eslint/no-use-before-define": [

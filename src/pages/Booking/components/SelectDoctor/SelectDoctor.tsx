@@ -6,6 +6,8 @@ import DoctorCoronado from '../../../../assets/staff/drCoronado.png'
 import DoctorHernandez from '../../../../assets/staff/drHernandez.jpeg'
 import { useAppDispatch } from '../../../../redux/hooks'
 import { selectDoctor } from '../../../../redux/slices/bookingPageSlice'
+import { useTranslation } from 'react-i18next'
+import { namespaces } from '../../../../i18n/i18n.constants'
 
 
 interface SelectDoctorProps {
@@ -16,7 +18,9 @@ interface SelectDoctorProps {
  * Component to select a doctor
  * @returns 
  */
-const SelectDoctor = ({ handleNext }: SelectDoctorProps) : JSX.Element => {
+const SelectDoctor = ({ handleNext }: SelectDoctorProps): JSX.Element => {
+
+  const { t } = useTranslation(namespaces.pages.booking)
 
   const availableDoctors: DoctorInfo[] = [
     {
@@ -48,9 +52,26 @@ const SelectDoctor = ({ handleNext }: SelectDoctorProps) : JSX.Element => {
     handleNext()
   }
 
+  const translateSpecialist = (string: TypesOfSpeciality): string => {
+    let speciality: string;
+    switch (string) {
+      case TypesOfSpeciality.General:
+        speciality = 'selectDoctor.speciality.general'
+        break
+      case TypesOfSpeciality.Nephrologist:
+        speciality = 'selectDoctor.speciality.nephrologist'
+        break
+      case TypesOfSpeciality.Nutritionist:
+        speciality = 'selectDoctor.speciality.nutritionist'
+        break
+    }
+  
+    return speciality
+  }
+
   return (
     <Box sx={{ flex: 1 }}>
-      <Typography variant="h5" color="primary" sx={{ mt: 2, mb: 1 }}>Select Doctor</Typography>
+      <Typography variant="h5" color="primary" sx={{ mt: 2, mb: 1 }}>{t("steps.selectDoctor")}</Typography>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
         {
@@ -74,7 +95,7 @@ const SelectDoctor = ({ handleNext }: SelectDoctorProps) : JSX.Element => {
                       {fullName}
                     </Typography>
                     <Typography gutterBottom variant="body2" color="text.secondary">
-                      {specialist}
+                      {t(translateSpecialist(specialist))}
                     </Typography>
                   </CardContent>
                 </CardActionArea>

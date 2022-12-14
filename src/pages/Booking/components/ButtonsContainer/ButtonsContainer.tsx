@@ -1,5 +1,7 @@
 import React from 'react'
 import { Box, Button } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { namespaces } from '../../../../i18n/i18n.constants'
 
 interface ButtonsContainerProps {
     steps: string[]
@@ -9,11 +11,12 @@ interface ButtonsContainerProps {
     handleBack: () => void
     handleNext: () => void
     handleReset: () => void
-    handleSubmit: (event: {preventDefault: () => void;}) => Promise<void>
+    handleSubmit: (event: { preventDefault: () => void; }) => Promise<void>
 }
 
-const ButtonsContainer = ({ steps, isStepOptional, activeStep, handleSkip, handleBack, handleNext, handleReset, handleSubmit }: ButtonsContainerProps) : JSX.Element => {
+const ButtonsContainer = ({ steps, isStepOptional, activeStep, handleSkip, handleBack, handleNext, handleReset, handleSubmit }: ButtonsContainerProps): JSX.Element => {
 
+    const { t } = useTranslation([namespaces.pages.booking])
     const almostFinish = activeStep === steps.length - 1
     const stepsFinished = activeStep === steps.length
     return (
@@ -30,16 +33,16 @@ const ButtonsContainer = ({ steps, isStepOptional, activeStep, handleSkip, handl
                             onClick={handleBack}
                             sx={{ mr: 1 }}
                         >
-                            Back
+                            {t("buttonsContainer.back")}
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
                         {isStepOptional(activeStep) && (
                             <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                                Skip
+                                {t("buttonsContainer.skip")}
                             </Button>
                         )}
-                        <Button onClick={() => almostFinish ? handleSubmit : handleNext}>
-                            {almostFinish ? 'Confirm' : 'Next'}
+                        <Button onClick={almostFinish ? handleSubmit : handleNext}>
+                            {t(almostFinish ? 'buttonsContainer.confirm' : 'buttonsContainer.next')}
                         </Button>
                     </>
             }
