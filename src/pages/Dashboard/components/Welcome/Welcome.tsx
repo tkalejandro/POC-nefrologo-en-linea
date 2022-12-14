@@ -19,9 +19,9 @@ const Welcome = (): JSX.Element => {
   return (
     <Box sx={{ m: 2 }}>
       <Typography variant="h6" component="h2" sx={{}}>
-        {`Hello ${firstName ?? ''}`}
+        {t("welcome.title", {firstName})}
       </Typography>
-      <Typography>{t("welcome", {name: firstName})}</Typography>
+      <Typography>{t("welcome.description")}</Typography>
     </Box>
   )
 }
