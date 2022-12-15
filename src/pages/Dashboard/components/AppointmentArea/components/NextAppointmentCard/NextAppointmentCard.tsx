@@ -11,7 +11,7 @@ import { setNextAppointments } from '../../../../../../redux/slices/userSlice'
 import { isApiError } from '../../../../../../services/ApiError'
 import { saludToolsAppointmentController } from '../../../../../../services/SaludToolsAppointmentController'
 import ChipModalityInfo from '../../../../../../types/DashboardPage/ChipModalityInfo'
-import { AppointmentReadBody } from '../../../../../../types/SaludTools'
+import { Appointment } from '../../../../../../types/SaludTools'
 
 /**
  * It render future appointments
@@ -108,7 +108,7 @@ const NextAppointmentCard = (): JSX.Element => {
     return (
         <Box>
             {
-                nextAppointments?.map((item: AppointmentReadBody) => {
+                nextAppointments?.map((item: Appointment) => {
                     const { id, doctorDocumentNumber, startAppointment, modality } = item
 
                     const {color, translatedText } = chipModalityInfo(modality)

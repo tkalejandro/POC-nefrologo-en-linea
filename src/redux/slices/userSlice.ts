@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { AppointmentReadBody, Patient } from '../../types/SaludTools'
+import { Appointment, Patient } from '../../types/SaludTools'
 
 
 // Define a type for the slice state
@@ -13,7 +13,7 @@ interface UserState {
     /**
      * Next 6 Appointments
      */
-    nextAppointments?: AppointmentReadBody[]
+    nextAppointments?: Appointment[]
 }
 
 // Define the initial state using that type
@@ -30,7 +30,7 @@ export const userSlice = createSlice({
         setSaludtoolsProfile: (state, action: PayloadAction<Patient>) => {
             state.saludToolsProfile = action.payload
         },
-        setNextAppointments: (state, action: PayloadAction<AppointmentReadBody[]>) => {
+        setNextAppointments: (state, action: PayloadAction<Appointment[]>) => {
             state.nextAppointments = action.payload
         },
 

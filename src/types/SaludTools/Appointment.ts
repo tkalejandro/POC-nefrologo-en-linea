@@ -3,6 +3,11 @@ import { SaludToolsClinic, SaludToolsDocumentType, SaludToolsModality, SaludTool
 
 interface Appointment {
     /**
+    * Id of Appointment. IF there is no number. Is not created yet.
+    */
+    id?: number
+
+    /**
      * Starting Date and Time of appointment. yyyy-mm-dd HH:mm -> 2021-04-30 08:00
      */
     startAppointment: string
