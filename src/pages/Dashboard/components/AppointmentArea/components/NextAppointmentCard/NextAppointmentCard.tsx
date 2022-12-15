@@ -43,6 +43,9 @@ const NextAppointmentCard = (): JSX.Element => {
 
         const { content } = searchAppointmentsSaludtools.body
        
+        if ( content.length === 0) {
+            // TO DO - Placeholder when there is no Data
+        }
         dispatch(setNextAppointments(content))
         return
     }
