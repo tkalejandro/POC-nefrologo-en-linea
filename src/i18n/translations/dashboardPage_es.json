@@ -19,6 +19,11 @@
                 "general": "General",
                 "nephrology": "Nefrologia",
                 "nutritionist": "Nutricionista"
+            },
+            "modality": {
+                "conventional": "Convencional",
+                "telemedicine": "En linea",
+                "domiciliary": "Domicilio"
             }
         },
         "userCalendar": {

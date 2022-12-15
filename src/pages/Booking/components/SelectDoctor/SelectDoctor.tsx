@@ -2,12 +2,11 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@
 import React from 'react'
 import { TypesOfSpeciality } from '../../../../enums/NefrologiaYDialisisSas'
 import { DoctorInfo } from '../../../../types/BookingPage'
-import DoctorCoronado from '../../../../assets/staff/drCoronado.png'
-import DoctorHernandez from '../../../../assets/staff/drHernandez.jpeg'
 import { useAppDispatch } from '../../../../redux/hooks'
 import { selectDoctor } from '../../../../redux/slices/bookingPageSlice'
 import { useTranslation } from 'react-i18next'
 import { namespaces } from '../../../../i18n/i18n.constants'
+import { availableDoctors } from '../../../../assets/data/availableDoctors'
 
 
 interface SelectDoctorProps {
@@ -21,26 +20,6 @@ interface SelectDoctorProps {
 const SelectDoctor = ({ handleNext }: SelectDoctorProps): JSX.Element => {
 
   const { t } = useTranslation(namespaces.pages.booking)
-
-  const availableDoctors: DoctorInfo[] = [
-    {
-      id: "123456789",
-      firstName: "Jorge",
-      secondName: "Antonio",
-      firstLastName: "Coronado",
-      secondLastName: "Daza",
-      specialist: TypesOfSpeciality.Nephrologist,
-      localImage: DoctorCoronado
-    },
-    {
-      id: "987654321",
-      firstName: "Andres",
-      firstLastName: "Hernandez",
-      secondLastName: "Coronado",
-      specialist: TypesOfSpeciality.Nephrologist,
-      localImage: DoctorHernandez
-    },
-  ]
 
   const dispatch = useAppDispatch()
 

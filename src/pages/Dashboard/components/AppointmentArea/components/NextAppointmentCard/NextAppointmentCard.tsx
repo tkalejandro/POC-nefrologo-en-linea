@@ -1,10 +1,17 @@
 import { Chip, Paper, Typography, } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NefrologiaYDialisisAppointmentTypes, TypesOfSpeciality } from '../../../../../../enums/NefrologiaYDialisisSas'
+import { availableDoctors } from '../../../../../../assets/data/availableDoctors'
+import { TypesOfSpeciality } from '../../../../../../enums/NefrologiaYDialisisSas'
+import { SaludToolsModality } from '../../../../../../enums/SaludTools'
 import { namespaces } from '../../../../../../i18n/i18n.constants'
-import { AppointmentCardInfo } from '../../../../../../types/DashboardPage'
+import { useAppDispatch, useAppSelector } from '../../../../../../redux/hooks'
+import { setNextAppointments } from '../../../../../../redux/slices/userSlice'
+import { isApiError } from '../../../../../../services/ApiError'
+import { saludToolsAppointmentController } from '../../../../../../services/SaludToolsAppointmentController'
+import ChipModalityInfo from '../../../../../../types/DashboardPage/ChipModalityInfo'
+import { AppointmentReadBody } from '../../../../../../types/SaludTools'
 
 /**
  * It render future appointments
@@ -13,76 +20,111 @@ import { AppointmentCardInfo } from '../../../../../../types/DashboardPage'
 const NextAppointmentCard = (): JSX.Element => {
 
     const { t } = useTranslation(namespaces.pages.dashboard)
-    const dummyArray: AppointmentCardInfo[] = [
-        { id: 1, specialist: TypesOfSpeciality.Nephrologist, appointment: NefrologiaYDialisisAppointmentTypes.FirstTime, doctor: 'Dr Coronado', date: new Date(), icon: undefined },
-        { id: 2, specialist: TypesOfSpeciality.Nephrologist, appointment: NefrologiaYDialisisAppointmentTypes.FirstTimeOnline, doctor: 'Dr Coronado', date: new Date(), icon: undefined },
-        { id: 3, specialist: TypesOfSpeciality.Nephrologist, appointment: NefrologiaYDialisisAppointmentTypes.Control, doctor: 'Dr Coronado', date: new Date(), icon: undefined },
-        { id: 4, specialist: TypesOfSpeciality.Nephrologist, appointment: NefrologiaYDialisisAppointmentTypes.ControlOnline, doctor: 'Dr Coronado', date: new Date(), icon: undefined },
-        { id: 5, specialist: TypesOfSpeciality.Nephrologist, appointment: NefrologiaYDialisisAppointmentTypes.Generic, doctor: 'Dr Coronado', date: new Date(), icon: undefined },
-        { id: 6, specialist: TypesOfSpeciality.Nephrologist, appointment: NefrologiaYDialisisAppointmentTypes.GenericOnline, doctor: 'Dr Coronado', date: new Date(), icon: undefined },
-    ]
-    const translateAppointmentType = (string: NefrologiaYDialisisAppointmentTypes): string => {
-        switch (string) {
-            case NefrologiaYDialisisAppointmentTypes.Control:
-            case NefrologiaYDialisisAppointmentTypes.ControlOnline:
-                return 'appointmentArea.nextAppointment.types.control'
+    const dispatch = useAppDispatch()
 
-            case NefrologiaYDialisisAppointmentTypes.FirstTime:
-            case NefrologiaYDialisisAppointmentTypes.FirstTimeOnline:
-                return 'appointmentArea.nextAppointment.types.firstTime'
+    const documentNumber = useAppSelector(state => state.user.saludToolsProfile?.documentNumber)
+    const documentType = useAppSelector(state => state.user.saludToolsProfile?.documentType)
 
-            case NefrologiaYDialisisAppointmentTypes.Generic:
-            case NefrologiaYDialisisAppointmentTypes.GenericOnline:
-                return 'appointmentArea.nextAppointment.types.generic'
+    const nextAppointments = useAppSelector(state => state.user.nextAppointments)
+
+    const searchAppointments = async (): Promise<void> => {
+
+        if (!documentNumber || !documentType) {
+            //If there is no patient loaded there is no chance to load this info.
+            return
+        }
+
+        const searchAppointmentsSaludtools = await saludToolsAppointmentController.searchAppointmentByDocumentId(documentNumber, documentType)
+
+        if (isApiError(searchAppointmentsSaludtools)) {
+            // TO DO - Should not connect, or try again. something is wrong.
+            return
+        }
+
+        const { content } = searchAppointmentsSaludtools.body
+       
+        dispatch(setNextAppointments(content))
+        return
+    }
+
+    useEffect(() => {
+        searchAppointments()
+    }, [documentNumber, documentType])
+
+    const translateSpecialityType = (documentIdNumber: string): string => {
+        const findDoctor = availableDoctors.find(i => i.id === documentIdNumber)
+        if(!findDoctor) {
+          return '-'
+        }
+
+        const {specialist} = findDoctor
+
+        switch (specialist) {
+            case TypesOfSpeciality.General:
+                return 'appointmentArea.nextAppointment.speciality.general'
+            case TypesOfSpeciality.Nephrologist:
+                return 'appointmentArea.nextAppointment.speciality.nephrology'
+            case TypesOfSpeciality.Nutritionist:
+                return 'appointmentArea.nextAppointment.speciality.nutritionist'
         }
     }
 
-    const translateSpecialityType = (string : TypesOfSpeciality) : string => {
-        switch(string){
-            case TypesOfSpeciality.General:
-                return 'appointmentArea.nextAppointment.speciality.general'
-                case TypesOfSpeciality.Nephrologist:
-                    return 'appointmentArea.nextAppointment.speciality.nephrology'
-                    case TypesOfSpeciality.Nutritionist:
-                        return 'appointmentArea.nextAppointment.speciality.nutritionist'
+    const chipModalityInfo = (modality: SaludToolsModality): ChipModalityInfo => {
+        switch (modality) {
+            case SaludToolsModality.Conventional:
+                return {
+                    color: 'default',
+                    translatedText: 'appointmentArea.nextAppointment.modality.conventional'
+                }
+
+            case SaludToolsModality.Telemedicine:
+                return {
+                    color: 'secondary',
+                    translatedText: 'appointmentArea.nextAppointment.modality.telemedicine'
+                }
+
+            case SaludToolsModality.Domiciliary:
+                return {
+                    color: 'info',
+                    translatedText: 'appointmentArea.nextAppointment.modality.domiciliary'
+                }
         }
+    }
+
+    const findDoctorName = (documentIdNumber : string) : string => {
+        const findDoctor = availableDoctors.find(i => i.id === documentIdNumber)
+      
+        if(!findDoctor) {
+          return '-'
+        }
+
+        const {firstLastName} = findDoctor
+
+        return `Dr. ${firstLastName}`
     }
     return (
         <Box>
             {
-                dummyArray.map((item: AppointmentCardInfo) => {
-                    const { id, doctor, specialist, appointment, date } = item
+                nextAppointments?.map((item: AppointmentReadBody) => {
+                    const { id, doctorDocumentNumber, startAppointment, modality } = item
 
-                    const isOnline = (): boolean => {
-                        //TO DO - This is unflexible.
-                        switch (appointment) {
-                            case NefrologiaYDialisisAppointmentTypes.ControlOnline:
-                            case NefrologiaYDialisisAppointmentTypes.FirstTimeOnline:
-                            case NefrologiaYDialisisAppointmentTypes.GenericOnline: {
-                                return true
-                            }
-                            default:
-                                return false
-                        }
-                    }
+                    const {color, translatedText } = chipModalityInfo(modality)
 
                     return (
-                        <Paper elevation={2}>
-                            <Box key={id} sx={{ my: 2, p: 1, display: 'flex', justifyContent: 'space-between' }}>
+                        <Paper key={id} elevation={2}>
+                            <Box  sx={{ my: 2, p: 1, display: 'flex', justifyContent: 'space-between' }}>
 
                                 <Box>
                                     <Box sx={{ display: 'flex' }}>
-                                        <Typography variant="subtitle2" component="h3">{t(translateAppointmentType(appointment))}</Typography>
+                                        <Typography variant="subtitle2" component="h3">{t(translateSpecialityType(doctorDocumentNumber))}</Typography>
                                     </Box>
 
-                                    <Typography variant="body2">{t(translateSpecialityType(specialist))}</Typography>
-                                    <Typography variant="body2">{doctor}</Typography>
+                                    <Typography variant="body2">{findDoctorName(doctorDocumentNumber)}</Typography>
                                 </Box>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                                    {
-                                        isOnline() ? <Chip label="online" size="small" color="secondary" sx={{ opacity: 0.8 }} /> : <Box />
-                                    }
-                                    <Typography variant="body2">{`${date.toLocaleDateString()} ${date.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}`}</Typography>
+                                   <Chip label={t(translatedText)} size="small" color={color} sx={{ opacity: 0.8 }} />
+                                
+                                    <Typography variant="body2">{startAppointment}</Typography>
                                 </Box>
                             </Box>
                         </Paper>
