@@ -1,4 +1,4 @@
-import { Box, Step, StepLabel, Stepper, Typography } from '@mui/material';
+import { Box,Step, StepLabel, Stepper, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { NefrologiaYDialisisAppointmentTypes } from '../../enums/NefrologiaYDialisisSas';
@@ -7,6 +7,7 @@ import { namespaces } from '../../i18n/i18n.constants';
 import { useAppSelector } from '../../redux/hooks';
 import { isApiError } from '../../services/ApiError';
 import { saludToolsAppointmentController } from '../../services/SaludToolsAppointmentController';
+import { NotificationMessage } from '../../types/App';
 import { Appointment } from '../../types/SaludTools';
 import { CreateAppointmentRequest } from '../../types/services/SaludToolsAppointmentController/request';
 import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectModality } from './components';
@@ -18,9 +19,11 @@ import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectMod
 const BookingPage = (): JSX.Element => {
 
   const { t } = useTranslation(namespaces.pages.booking)
+
+  const [loading, setLoading] = useState<boolean>(false)
   const [activeStep, setActiveStep] = useState<number>(0);
   const [skipped, setSkipped] = useState(new Set<number>());
-  const [errorMessage, setErrorMessage] = useState<string | undefined>()
+  const [notification, setNotification] = useState<NotificationMessage | undefined>()
 
   /**
    * Steps of the process. This are translation paths.
@@ -80,7 +83,7 @@ const BookingPage = (): JSX.Element => {
   const selectStepToRender = (step: number): JSX.Element | null => {
     if (step === steps.length) {
       //All steps have been completed.
-      return <Confirmation errorMessage={errorMessage} />
+      return <Confirmation notification={notification} />
     }
 
     switch (step) {
@@ -93,7 +96,7 @@ const BookingPage = (): JSX.Element => {
           handleNext={handleNext}
         />
       case 2:
-        return <SelectSchedule />
+        return <SelectSchedule/>
       default:
         return null
     }
@@ -107,13 +110,17 @@ const BookingPage = (): JSX.Element => {
    */
   const handleSubmit = async (event: { preventDefault: () => void; }): Promise<void> => {
     event.preventDefault()
+
     if (bookingPreRequest == null || currentUserSaludToolsProfile == null) {
+      //If for some reason the user arrives to submit! which is impossible but you never know.
       return
     }
-
+    setLoading(true)
     const { doctorDocumentNumber, doctorDocumentType, startAppointment, endAppointment, modality } = bookingPreRequest
 
     if (doctorDocumentNumber == null || doctorDocumentType == null || startAppointment == null || endAppointment == null || modality == null) {
+      // TO DO - Error handling somehwere :-)
+      setLoading(false)
       return
     }
 
@@ -128,7 +135,7 @@ const BookingPage = (): JSX.Element => {
       modality,
       stateAppointment: SaludToolsStateAppointment.InVirtualRoom,
       notificationState: SaludToolsNotificationState.Attend,
-      appointmentType: NefrologiaYDialisisAppointmentTypes.ControlOnline,
+      appointmentType: NefrologiaYDialisisAppointmentTypes.SubscriptionUser,
       clinic: SaludToolsClinic.NefrologiaYDialisisSas,
       comment: "This is a test"
 
@@ -140,17 +147,27 @@ const BookingPage = (): JSX.Element => {
     }
 
     const createAppointmentRequest = await saludToolsAppointmentController.createAppointment(request)
-
+    console.log(createAppointmentRequest)
     if (isApiError(createAppointmentRequest)) {
       const { error } = createAppointmentRequest
-      setErrorMessage(error)
+      setNotification({
+        type: 'error',
+        message: error
+      })
       handleNext()
+      setLoading(false)
       return
     }
+    //If success, we send the ID. The id will pass until the translation files.
+    setNotification({ type: 'success', message: createAppointmentRequest?.id?.toString() ?? '' })
+    handleNext()
+    setLoading(false)
   }
 
   return (
     <Box sx={{ width: '100%', minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
+
+
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
@@ -185,6 +202,7 @@ const BookingPage = (): JSX.Element => {
         handleSkip={handleSkip}
         handleReset={handleReset}
         handleSubmit={handleSubmit}
+        loading={loading}
       />
     </Box>
   )

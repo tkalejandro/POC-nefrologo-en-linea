@@ -13,7 +13,7 @@
     },
     "confirmation": {
         "errorMessage": "Oops, hubo un error.",
-        "successMessage": "Cita confirmada",
+        "successMessage": "Cita confirmada - {{id}}",
         "successDescription":"Tienes una nueva cita para el dia {{date}} a las {{time}}. Tambien recibiras un correo de confirmacion en {{email}} ",
         "tryAgain": "Intentar otra vez",
         "okay": "Ok"

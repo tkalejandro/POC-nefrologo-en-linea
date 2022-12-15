@@ -2,8 +2,8 @@ import dayjs from "dayjs"
 import { SaludToolsApiRoutes } from "../constants"
 import { SaludToolsActionType, SaludToolsClinic, SaludToolsDocumentType, SaludToolsEventType } from "../enums/SaludTools"
 import ApiError from "../types/Api/ApiError"
-import { CreateAppointmentRequest, SearchAppointmentRequest } from "../types/services/SaludToolsAppointmentController/request"
-import { CreateAppointmentResponse } from "../types/services/SaludToolsAppointmentController/response"
+import { CreateAppointmentRequest, DeleteAppointmentRequest, SearchAppointmentRequest } from "../types/services/SaludToolsAppointmentController/request"
+import { CreateAppointmentResponse, DeleteAppointmentResponse } from "../types/services/SaludToolsAppointmentController/response"
 import SearchAppointmentResponse from "../types/services/SaludToolsAppointmentController/response/SearchAppointmentResponse"
 import { isApiError, isSaludToolsApiError } from "./ApiError"
 import { ApiServices } from "./ApiServices"
@@ -89,7 +89,8 @@ class SaludToolsAppointmentController extends ApiServices {
                     patientDocumentNumber: documentId,
                     pageable: {
                         page: 0,
-                        size: 6
+                        // TO DO - Can SaludTools organize this by Date themselves?
+                        size: 20
                     }
                 }
             }
@@ -124,9 +125,50 @@ class SaludToolsAppointmentController extends ApiServices {
         }
     }
 
-    // deleteAppointment() {
-    //     return ' Delete Appointment'
-    // }
+    async deleteAppointmentById(appointmentId: string): Promise<DeleteAppointmentResponse | ApiError> {
+        try {
+
+            const authorization = await this.saludToolsAuthorization()
+
+            if (isApiError(authorization)) return authorization
+
+            const preRequest: DeleteAppointmentRequest = {
+                eventType: SaludToolsEventType.Appointment,
+                actionType: SaludToolsActionType.Delete,
+                body: {
+                    id: appointmentId
+                }
+            }
+            const data = JSON.stringify(preRequest)
+            const settings = {
+                method: "POST",
+                body: data,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `${authorization}`
+                },
+            }
+            const request = await fetch(SaludToolsApiRoutes.integration, settings)
+
+            const response = await request.json() as DeleteAppointmentResponse
+
+            const isError = isSaludToolsApiError(response)
+
+            if (isError) {
+                return isError
+            }
+
+            return response
+
+        } catch (e) {
+            const error = e as Error
+            const isError: ApiError = {
+                error: error.message,
+                code: 500
+            }
+            return isError
+        }
+    }
 }
 
 export const saludToolsAppointmentController = new SaludToolsAppointmentController()

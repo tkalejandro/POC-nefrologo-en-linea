@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid,  Typography } from '@mui/material'
 import dayjs, { Dayjs } from 'dayjs';
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
@@ -36,7 +36,7 @@ const Schedule = () : JSX.Element => {
   /**
    * Function that assign starting and ending date times.
    */
-  const dateTimeSelection = () : void => {
+  const dateTimeSelection = (): void => {
     if (dateValue == null || timeValue == null) {
       return
     }
@@ -87,6 +87,7 @@ const Schedule = () : JSX.Element => {
           />
         </Grid>
         <Grid item xs={12} lg={6}>
+       
           <TimeSelection
             timeValue={timeValue}
             setTimeValue={setTimeValue}

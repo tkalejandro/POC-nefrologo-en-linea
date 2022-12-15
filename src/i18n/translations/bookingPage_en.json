@@ -13,8 +13,8 @@
     },
     "confirmation": {
         "errorMessage": "Oops, there was an error.",
-        "successMessage": "Appointment successfull",
-        "successDescription":"You have a new appointment at {{date}} {{time}}. You will receive a confirmation email to {{email}}",
+        "successMessage": "Appointment successfull - {{id}}",
+        "successDescription":"You have a new appointment the {{date}} at {{time}}. You will receive a confirmation email to {{email}}",
         "tryAgain": "Try again",
         "okay": "Okay"
     },
