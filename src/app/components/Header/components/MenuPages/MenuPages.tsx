@@ -2,7 +2,9 @@ import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button, IconButton, Menu, MenuItem, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { RoutesPath } from '../../../../../pages/Routes';
+import { AppRoutes, RouteName } from '../../../../../pages/routes';
+import { useTranslation } from 'react-i18next';
+import { namespaces } from '../../../../../i18n/i18n.constants';
 
 
 /**
@@ -10,6 +12,8 @@ import { RoutesPath } from '../../../../../pages/Routes';
  * @returns 
  */
 const MenuPages = (): JSX.Element => {
+
+    const { t } = useTranslation(namespaces.app)
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
         setAnchorElNav(event.currentTarget);
@@ -19,23 +23,38 @@ const MenuPages = (): JSX.Element => {
         setAnchorElNav(null);
     };
 
-    const pages = ['dashboard', 'booking', 'test'];
+    const pages = [
+        RouteName.Dashboard,
+        RouteName.Booking,
+        RouteName.Test
+    ];
 
     /**
      * Function to assign the correct path
      * @param page 
      * @returns 
      */
-    const assignPath = (page: string): string => {
+    const assignPath = (page: RouteName): string => {
         switch (page) {
-            case 'dashboard':
-                return RoutesPath.dashboard
-            case 'booking':
-                return RoutesPath.booking
-            case 'test':
-                return RoutesPath.test
+            case RouteName.Dashboard:
+                return AppRoutes.dashboard.path
+            case RouteName.Booking:
+                return AppRoutes.booking.path
+            case RouteName.Test:
+                return AppRoutes.test.path
             default:
-                return RoutesPath.dashboard
+                return AppRoutes.dashboard.path
+        }
+    }
+
+    const translateRouteName = (str: RouteName): string => {
+        switch (str) {
+            case RouteName.Dashboard:
+                return 'routeNames.dashboard'
+            case RouteName.Booking:
+                return 'routeNames.booking'
+            case RouteName.Test:
+                return 'routeNames.test'
         }
     }
 
@@ -73,7 +92,7 @@ const MenuPages = (): JSX.Element => {
                 >
                     {pages.map((page) => (
                         <MenuItem component={Link} to={assignPath(page)} key={page} onClick={handleCloseNavMenu}>
-                            <Typography textAlign="center">{page}</Typography>
+                            <Typography textAlign="center">{t(translateRouteName(page))}</Typography>
                         </MenuItem>
                     ))}
                 </Menu>
@@ -87,7 +106,7 @@ const MenuPages = (): JSX.Element => {
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, display: 'block' }}
                     >
-                        {page}
+                        {t(translateRouteName(page))}
                     </Button>
                 ))}
             </Box>

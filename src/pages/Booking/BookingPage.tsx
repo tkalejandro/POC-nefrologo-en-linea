@@ -1,10 +1,13 @@
-import { Box, Step, StepLabel, Stepper, Typography } from '@mui/material';
+import { Box,Step, StepLabel, Stepper, Typography } from '@mui/material';
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { NefrologiaYDialisisAppointmentTypes } from '../../enums/NefrologiaYDialisisSas';
 import { SaludToolsActionType, SaludToolsClinic, SaludToolsEventType, SaludToolsNotificationState, SaludToolsStateAppointment } from '../../enums/SaludTools';
+import { namespaces } from '../../i18n/i18n.constants';
 import { useAppSelector } from '../../redux/hooks';
 import { isApiError } from '../../services/ApiError';
 import { saludToolsAppointmentController } from '../../services/SaludToolsAppointmentController';
+import { NotificationMessage } from '../../types/App';
 import { Appointment } from '../../types/SaludTools';
 import { CreateAppointmentRequest } from '../../types/services/SaludToolsAppointmentController/request';
 import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectModality } from './components';
@@ -13,28 +16,34 @@ import { ButtonsContainer, Confirmation, SelectDoctor, SelectSchedule, SelectMod
  * Page where the user will be able to make an appointment
  * @returns 
  */
-const BookingPage = () : JSX.Element => {
+const BookingPage = (): JSX.Element => {
 
+  const { t } = useTranslation(namespaces.pages.booking)
 
+  const [loading, setLoading] = useState<boolean>(false)
   const [activeStep, setActiveStep] = useState<number>(0);
   const [skipped, setSkipped] = useState(new Set<number>());
-  const [errorMessage, setErrorMessage] = useState<string | undefined>()
+  const [notification, setNotification] = useState<NotificationMessage | undefined>()
 
   /**
-   * Steps of the process
+   * Steps of the process. This are translation paths.
    */
-  const steps = ['Select Modality', 'Select Doctor', 'Select Time'];
+  const steps = [
+    'steps.selectModality',
+    'steps.selectDoctor',
+    'steps.selectDateTime'
+  ];
 
-  const isStepOptional = (_step: number) : boolean => {
+  const isStepOptional = (_step: number): boolean => {
     //return step === 1;
     return false
   };
 
-  const isStepSkipped = (step: number) : boolean => {
+  const isStepSkipped = (step: number): boolean => {
     return skipped.has(step);
   };
 
-  const handleNext = () : void => {
+  const handleNext = (): void => {
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -45,11 +54,11 @@ const BookingPage = () : JSX.Element => {
     setSkipped(newSkipped);
   };
 
-  const handleBack = () : void => {
+  const handleBack = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () : void => {
+  const handleSkip = (): void => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
@@ -64,7 +73,7 @@ const BookingPage = () : JSX.Element => {
     });
   };
 
-  const handleReset = () : void => {
+  const handleReset = (): void => {
     setActiveStep(0);
   };
 
@@ -74,7 +83,7 @@ const BookingPage = () : JSX.Element => {
   const selectStepToRender = (step: number): JSX.Element | null => {
     if (step === steps.length) {
       //All steps have been completed.
-      return <Confirmation errorMessage={errorMessage} />
+      return <Confirmation notification={notification} />
     }
 
     switch (step) {
@@ -87,7 +96,7 @@ const BookingPage = () : JSX.Element => {
           handleNext={handleNext}
         />
       case 2:
-        return <SelectSchedule />
+        return <SelectSchedule/>
       default:
         return null
     }
@@ -99,15 +108,19 @@ const BookingPage = () : JSX.Element => {
    * Function that handle a creation of a new appointment
    * @returns 
    */
-  const handleSubmit = async (event: { preventDefault: () => void; }) : Promise<void> => {
+  const handleSubmit = async (event: { preventDefault: () => void; }): Promise<void> => {
     event.preventDefault()
+
     if (bookingPreRequest == null || currentUserSaludToolsProfile == null) {
+      //If for some reason the user arrives to submit! which is impossible but you never know.
       return
     }
-
+    setLoading(true)
     const { doctorDocumentNumber, doctorDocumentType, startAppointment, endAppointment, modality } = bookingPreRequest
 
     if (doctorDocumentNumber == null || doctorDocumentType == null || startAppointment == null || endAppointment == null || modality == null) {
+      // TO DO - Error handling somehwere :-)
+      setLoading(false)
       return
     }
 
@@ -122,7 +135,7 @@ const BookingPage = () : JSX.Element => {
       modality,
       stateAppointment: SaludToolsStateAppointment.InVirtualRoom,
       notificationState: SaludToolsNotificationState.Attend,
-      appointmentType: NefrologiaYDialisisAppointmentTypes.ControlOnline,
+      appointmentType: NefrologiaYDialisisAppointmentTypes.SubscriptionUser,
       clinic: SaludToolsClinic.NefrologiaYDialisisSas,
       comment: "This is a test"
 
@@ -134,17 +147,27 @@ const BookingPage = () : JSX.Element => {
     }
 
     const createAppointmentRequest = await saludToolsAppointmentController.createAppointment(request)
-
+    console.log(createAppointmentRequest)
     if (isApiError(createAppointmentRequest)) {
       const { error } = createAppointmentRequest
-      setErrorMessage(error)
+      setNotification({
+        type: 'error',
+        message: error
+      })
       handleNext()
+      setLoading(false)
       return
     }
+    //If success, we send the ID. The id will pass until the translation files.
+    setNotification({ type: 'success', message: createAppointmentRequest?.id?.toString() ?? '' })
+    handleNext()
+    setLoading(false)
   }
 
   return (
     <Box sx={{ width: '100%', minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
+
+
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
@@ -153,7 +176,7 @@ const BookingPage = () : JSX.Element => {
           } = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
+              <Typography variant="caption">{t("optional")}</Typography>
             );
           }
           if (isStepSkipped(index)) {
@@ -161,7 +184,7 @@ const BookingPage = () : JSX.Element => {
           }
           return (
             <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+              <StepLabel {...labelProps}>{t(label)}</StepLabel>
             </Step>
           );
         })}
@@ -179,6 +202,7 @@ const BookingPage = () : JSX.Element => {
         handleSkip={handleSkip}
         handleReset={handleReset}
         handleSubmit={handleSubmit}
+        loading={loading}
       />
     </Box>
   )

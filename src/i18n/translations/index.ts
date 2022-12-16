@@ -1,0 +1,6 @@
+export { default as dashboard_es } from './dashboardPage_es.json'
+export { default as dashboard_en } from './dashboardPage_en.json'
+export { default as booking_en } from './bookingPage_en.json'
+export { default as booking_es } from './bookingPage_es.json'
+export { default as app_en } from './app_en.json'
+export { default as app_es } from './app_es.json'

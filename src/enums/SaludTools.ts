@@ -102,7 +102,7 @@ export enum SaludToolsStateAppointment {
     Completed = "EXECUTE",
     Pending = "PENDING",
     InRoom = "IN_ROOM",
-    OnGoing ="MEDICAL_CARE",
+    OnGoing = "MEDICAL_CARE",
     NoShow = "NOT_PRESENTEE",
     Cancelado = "CANCELLED",
     WaitPayment = "WAIT_PAYMENT",
@@ -113,10 +113,20 @@ export enum SaludToolsStateAppointment {
 }
 
 /**
- * State of confirmation by the patient.
+ * State of notification confirmation by the patient.
  */
 export enum SaludToolsNotificationState {
     Attend = "ATTEND"
+    /**
+     * TO DO
+     * 
+     * SEND
+ATTEND
+NOT_RESPOND
+NOT_SEND
+RESPOND_ERORR
+NOT_ATTEND
+     */
 }
 
 /**

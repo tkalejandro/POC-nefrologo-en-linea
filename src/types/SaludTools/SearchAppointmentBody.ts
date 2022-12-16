@@ -1,4 +1,4 @@
-import { AppointmentReadBody } from "."
+import { Appointment } from "."
 import PaginationInformation from "./PaginationInformation"
 
 interface SearchAppointmentBody extends PaginationInformation {
@@ -7,7 +7,7 @@ interface SearchAppointmentBody extends PaginationInformation {
      * List of appointments
      * 
      */
-    content: AppointmentReadBody[]
+    content: Appointment[]
 }
 
 export default SearchAppointmentBody

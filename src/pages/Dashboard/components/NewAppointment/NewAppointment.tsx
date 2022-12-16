@@ -2,7 +2,9 @@ import { Box, Button } from '@mui/material'
 import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
-import { RoutesPath } from '../../../Routes';
+import { AppRoutes } from '../../../routes';
+import { useTranslation } from 'react-i18next';
+import { namespaces } from '../../../../i18n/i18n.constants';
 
 //RAFCE
 
@@ -11,11 +13,13 @@ import { RoutesPath } from '../../../Routes';
  * @returns 
  */
 const NewAppointment = () : JSX.Element => {
+
+    const { t } = useTranslation(namespaces.pages.dashboard)
     return (
         <Box sx={{ height: '100%' }}>
             <Button
                 component={Link}
-                to={RoutesPath.booking}
+                to={AppRoutes.booking.path}
                 fullWidth
                 color="primary"
                 variant="contained"
@@ -23,7 +27,7 @@ const NewAppointment = () : JSX.Element => {
             >
                 <AddIcon />
                 {' '}
-                New appointment
+               {t("newAppointment")}
             </Button>
         </Box>
     )

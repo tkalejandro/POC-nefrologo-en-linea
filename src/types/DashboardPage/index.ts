@@ -1,1 +1,1 @@
-export type { default as AppointmentCardInfo} from './AppointmentCardInfo'
+export type { default as ChipModalityInfo} from './ChipModalityInfo'

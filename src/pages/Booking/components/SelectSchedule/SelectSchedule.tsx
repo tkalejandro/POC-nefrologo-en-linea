@@ -1,6 +1,8 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid,  Typography } from '@mui/material'
 import dayjs, { Dayjs } from 'dayjs';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
+import { namespaces } from '../../../../i18n/i18n.constants';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { selectDateTime } from '../../../../redux/slices/bookingPageSlice';
 import { StartingEndingDateTime } from '../../../../types/BookingPage';
@@ -8,6 +10,7 @@ import { DateSelection, TimeSelection } from './components'
 
 const Schedule = () : JSX.Element => {
 
+  const { t } = useTranslation(namespaces.pages.booking)
   const dispatch = useAppDispatch()
 
   const [dateValue, setDateValue] = useState<Dayjs | null>(dayjs());
@@ -33,7 +36,7 @@ const Schedule = () : JSX.Element => {
   /**
    * Function that assign starting and ending date times.
    */
-  const dateTimeSelection = () : void => {
+  const dateTimeSelection = (): void => {
     if (dateValue == null || timeValue == null) {
       return
     }
@@ -70,7 +73,7 @@ const Schedule = () : JSX.Element => {
 
   return (
     <Box sx={{ flex: 1 }}>
-      <Typography variant="h5" color="primary" sx={{ mt: 2, mb: 1 }}>Date and time</Typography>
+      <Typography variant="h5" color="primary" sx={{ mt: 2, mb: 1 }}>{t("steps.selectDateTime")}</Typography>
       <Grid container>
         <Grid item xs={12} >
           <Typography textAlign="center" variant="h4" color="primary.dark" sx={{ flex: 1, mb: 4 }}>
@@ -84,6 +87,7 @@ const Schedule = () : JSX.Element => {
           />
         </Grid>
         <Grid item xs={12} lg={6}>
+       
           <TimeSelection
             timeValue={timeValue}
             setTimeValue={setTimeValue}

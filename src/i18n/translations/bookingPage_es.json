@@ -1,0 +1,42 @@
+{
+    "optional": "Opcional",
+    "steps": {
+        "selectModality": "Modalidad",
+        "selectDoctor": "Seleccionar doctor",
+        "selectDateTime": "Fecha y hora"
+    },
+    "buttonsContainer":{
+        "back": "Atras",
+        "skip": "Saltar",
+        "confirm": "Confirmar",
+        "next": "Siguiente"
+    },
+    "confirmation": {
+        "errorMessage": "Oops, hubo un error.",
+        "successMessage": "Cita confirmada - {{id}}",
+        "successDescription":"Tienes una nueva cita para el dia {{date}} a las {{time}}. Tambien recibiras un correo de confirmacion en {{email}} ",
+        "tryAgain": "Intentar otra vez",
+        "okay": "Ok"
+    },
+    "selectDoctor": {
+        "speciality": {
+            "general": "Medico General",
+            "nephrologist": "Nefrologo",
+            "nutritionist": "Nutriosonista"
+        }
+    },
+    "selectModality": {
+        "conventional": {
+            "title": "Convencional",
+            "description": "Su cita sera en {{companyName}}, {{companyAddress}}."
+        },
+        "telemedicine": {
+            "title": "Telemedicina",
+            "description": "Recibiras a este correo {{userEmail}} un link para conectarte via Saludtools."
+        },
+        "domiciliary": {
+            "title": "Domicilio",
+            "description": "Su cita sera en esta dirreccion {{userAddress}}."
+        }
+    }
+}

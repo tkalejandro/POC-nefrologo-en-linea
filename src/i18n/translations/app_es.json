@@ -1,0 +1,7 @@
+{
+    "routeNames": {
+        "dashboard": "Portal",
+        "booking": "Citas",
+        "test": "Test"
+    }
+}

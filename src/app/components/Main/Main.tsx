@@ -1,7 +1,7 @@
 import { Container } from '@mui/system'
 import React, { lazy, Suspense, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
-import { RoutesPath } from '../../../pages/Routes'
+import { AppRoutes } from '../../../pages/routes'
 import { useAppDispatch } from '../../../redux/hooks'
 import { setSaludtoolsProfile } from '../../../redux/slices/userSlice'
 import { isApiError } from '../../../services/ApiError'
@@ -52,9 +52,9 @@ const Main = () : JSX.Element => {
             sx={{ py: 5 }}>
             <Suspense fallback={<Loading />}>
                 <Routes>
-                    <Route path={RoutesPath.dashboard} element={<Dashboard />} />
-                    <Route path={RoutesPath.booking} element={<Booking />} />
-                    <Route path={RoutesPath.test} element={<Test />} />
+                    <Route path={AppRoutes.dashboard.path} element={<Dashboard />} />
+                    <Route path={AppRoutes.booking.path} element={<Booking />} />
+                    <Route path={AppRoutes.test.path} element={<Test />} />
                 </Routes>
             </Suspense>
         </Container>

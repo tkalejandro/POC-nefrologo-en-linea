@@ -3,7 +3,7 @@ import { SaludToolsClinic, SaludToolsDocumentType, SaludToolsModality, SaludTool
 /**
  * Same as Appointment, but all properties are not required. Useful for SEARCH
  */
-interface FlexAppointment {
+interface SearchAppointment {
 
     /**
      * Id of the appointment.
@@ -69,6 +69,17 @@ interface FlexAppointment {
      * Comments of the patient regarding the appointment.
      */
     comment?: string
+
+    pageable: {
+        /**
+         * Starting page. Starting 0.
+         */
+        page: number
+        /**
+         * How many items per page
+         */
+        size: number
+    }
 }
 
-export default FlexAppointment
+export default SearchAppointment
