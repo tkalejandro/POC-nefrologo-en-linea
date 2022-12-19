@@ -31,6 +31,9 @@
         }
     },
     "userInformation": {
-
+        "title": "User information",
+        "appointments": "Appointments available:",
+        "age": "Age:",
+        "height": "Height:"
     }
 }

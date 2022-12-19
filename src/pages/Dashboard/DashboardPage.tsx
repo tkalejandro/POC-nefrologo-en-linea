@@ -1,6 +1,6 @@
 import {  Box, styled, Paper, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
-import { AppointmentArea, NewAppointment, UrgentCommunication, Welcome } from './components';
+import { AppointmentArea, NewAppointment, UrgentCommunication, Welcome, UserInformation } from './components';
 
 /**
  * Users Dashboard
@@ -8,32 +8,7 @@ import { AppointmentArea, NewAppointment, UrgentCommunication, Welcome } from '.
  */
 const DashboardPage = () : JSX.Element => {
 
-  /**
-   * The idea is to have a useful dashboard for the user.
-   * The user wil be a person, who paid a subscription and can book a limited quantity of bookings depending of their account. 
-   * The important in this Dashboard is the button to schedule an appointment (it will redirect to /bookings) and the Urgent Call, just a block with office number and office hours.
-   * The urgent call is because, maybe there is not place available, but the user still want to contact the doctor. This number connects with the current scretary.
-   * 
-   * What other items should user see in the dAshboard?? No idea.
-   * 
-   * This bring opportunity to explore Material UI and bring block elements.
-   * 
-   * Make sure the components are save in the components "./"  . Follow the components strucure.
-   * 
-   * Material UI tips:  DIV are now BOX, P are now Typography. Each one has special properties, there is almost no need to write fontSizes colors, etc etc. Is all inbuilt and can be call in the component
-   * 
-   * Noramlly you can target the colors primary , secondary directly (will have contrast text automatically) or targeting via theme.palette.primary...  you can find the dark light and contrast text version
-   * 
-   * MAYBE WE NEED TO EXPLORE COOL DASHBOARD IDEAS. Keep it simple to the GRID. The main goal is to understand MATERIAL UI.
-   * 
-   * We could use FREE SVGs
-   */
-
   const theme = useTheme()
-
-  /**
-   * Item Component.
-   */
   const Item = styled(Paper)({
     // This will give the color to all texts inside components
     color: theme.palette.text.secondary,
@@ -121,9 +96,7 @@ const DashboardPage = () : JSX.Element => {
           <AppointmentArea />
         </Item>
         <Item sx={{ gridArea: 'ui' }}>
-          <Box sx={{ m: 2 }}>
-            User information / Number of appointments left.
-          </Box>
+          <UserInformation />
         </Item>
         <Item sx={{ gridArea: 'uc' }}>
           <UrgentCommunication />

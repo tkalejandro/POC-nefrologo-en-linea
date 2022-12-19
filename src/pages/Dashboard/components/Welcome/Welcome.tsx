@@ -16,6 +16,7 @@ const Welcome = (): JSX.Element => {
   const { t } = useTranslation(namespaces.pages.dashboard)
   
   const firstName = useAppSelector(state => state.user.saludToolsProfile?.firstName)
+  
   return (
     <Box sx={{ m: 2 }}>
       <Typography variant="h6" component="h2" sx={{}}>

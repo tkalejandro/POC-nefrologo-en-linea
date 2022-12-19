@@ -14,7 +14,7 @@ const AppointmentArea = () : JSX.Element => {
 
   const {t} = useTranslation(namespaces.pages.dashboard)
   return (
-    <Box sx={() => ({ height: '100%' })}>
+    <Box sx={{ height: '100%' }}>
       <UserCalendar />
       <Box sx={{ m: 2 }}>
         <Divider sx={{mb: 2}} />

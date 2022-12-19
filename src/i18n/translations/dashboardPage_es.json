@@ -32,6 +32,9 @@
       
     },
     "userInformation": {
-       
+        "title": "Informacion de usuario",
+        "appointments": "Citas restante:",
+        "age": "Edad:",
+        "height": "Altura:"
     }
 }
