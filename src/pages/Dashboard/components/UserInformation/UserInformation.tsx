@@ -1,22 +1,19 @@
 import { Box, useTheme, /* styled, Paper, */ Grid, useMediaQuery, Typography } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import React from 'react'
-
+import { useTranslation } from 'react-i18next';
+import { namespaces } from '../../../../i18n/i18n.constants';
 
 
 const UserInformation = (): JSX.Element => {
 
+    const { t } = useTranslation(namespaces.pages.dashboard)
     const theme = useTheme()
-    /* const Item = styled(Paper)({
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }); */
-
     const isMd = useMediaQuery(theme.breakpoints.up('md'));
+
     return (
         <Box sx={{ m: 2 }}>
-            User information / Number of appointments left.
+            {t("userInformation.title")}
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -27,27 +24,27 @@ const UserInformation = (): JSX.Element => {
                     flexDirection: 'column',
                     alignItems: 'center',
                 }}>
-                    <AccountCircleIcon sx={{ fontSize: isMd ? 250 : 200, color: 'primary' }} />
-                    <Typography mt={2} variant={isMd ? 'h3' : 'h4'}>
+                    <AccountCircleIcon sx={{ fontSize: isMd ? 200 : 150, color: 'primary' }} />
+                    <Typography mt={2} variant={isMd ? 'h4' : 'h5'}>
                         Trevor Phillips
                     </Typography>
                 </Box>
                 <Typography mt={4}>
                     {/* available currently hardcoded */}
-                    <Typography color='primary' variant='h5' component='span'>3 </Typography>
-                    appointments available
+                    {t("userInformation.appointments")}
+                    <Typography ml={1} color='primary' variant='h5' component='span'>3</Typography>
                 </Typography>
             </Box>
             <Grid container spacing={2} mt={4}>
                 {/* User Profile Picture and name */}
                 <Grid item xs={6} lg={6}>
                     <Typography textAlign="center">
-                        Age
+                        {t("userInformation.age")}
                     </Typography>
                 </Grid>
                 <Grid item xs={6} lg={6}>
                     <Typography textAlign="center">
-                        Height
+                        {t("userInformation.height")}
                     </Typography>
                 </Grid>
             </Grid>
