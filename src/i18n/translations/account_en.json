@@ -1,0 +1,44 @@
+{
+    "accountStatus": {
+        "title": "About account",
+        "habeasData": {
+            "description": "Habeas Data accepted",
+            "successMessage": "You have accepted the use of your information. Please read more in Policy.",
+            "errorMessage": "error message"
+        },
+        "verifiedUser": {
+            "description": "Verified user",
+            "successMessage": "success message",
+            "errorMessage": "error message"
+        },
+        "essentialInformation": {
+            "description": "Essential information",
+            "successMessage": "success message",
+            "errorMessage": "error message"
+        },
+        "allowDomiciliary": {
+            "description": "Allow Domiciliary",
+            "successMessage": "success message",
+            "errorMessage": "error message"
+        }
+    },
+    "myInformation": {
+        "general": {
+            "title": "General information",
+            "documentType": "Document",
+            "documentNumber": "ID",
+            "firstName": "First name",
+            "secondName": "Middle name",
+            "lastName": "Last name",
+            "secondLastName": "Second last name",
+            "gender": "Gender",
+            "birthDate": "Birthday"
+        },
+        "contact": {
+            "title": "Contact information",
+            "email": "Email",
+            "countryCode": "Country",
+            "mobilePhone": "Mobile number"
+        }
+    }
+}

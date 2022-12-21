@@ -2,6 +2,7 @@
    "routeNames": {
        "dashboard": "Dashboard",
        "booking": "Booking",
-       "test": "Test"
+       "test": "Test",
+       "account": "Account"
    }
 }

@@ -22,3 +22,29 @@ export enum  TypesOfSpeciality {
     General = 'General',
     Nutritionist = 'Nutritionist' 
 }
+
+/**
+ * Type of subscriptions
+ */
+export enum TypeOfSubscriptions {
+    OneYear = 'OneYear',
+    SixMonths = 'SixMonths' 
+}
+
+/**
+ * Ids for My information form. Useful also to render correct translations.
+ */
+export enum MyInformationForm {
+    DocumentType = 'DocumentType',
+    DocumentNumber = 'DocumentNumber',
+    FirstName = 'FirstName',
+    SecondName = 'SecondName',
+    LastName = 'LastName',
+    SecondLastName = 'SecondLastName',
+    Gender = 'Gender',
+    BirthDate = 'BirthDate',
+    Email = 'Email',
+    CountryCode = 'CountryCode',
+    MobilePhone = 'MobilePhone'
+
+}

@@ -1,48 +1,55 @@
 import { Container } from '@mui/system'
 import React, { lazy, Suspense, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
+import dummyNydUser from '../../../assets/dummyData/dummyNydUser'
 import { AppRoutes } from '../../../pages/routes'
 import { useAppDispatch } from '../../../redux/hooks'
-import { setSaludtoolsProfile } from '../../../redux/slices/userSlice'
+import { setNydProfile, setSaludtoolsProfile } from '../../../redux/slices/userSlice'
 import { isApiError } from '../../../services/ApiError'
 import { saludToolsPatientController } from '../../../services/SaludToolsPatientController'
 
 const Dashboard = lazy(() => import('../../../pages/Dashboard/DashboardPage'))
 const Booking = lazy(() => import('../../../pages/Booking/BookingPage'))
+const Account = lazy(() => import('../../../pages/Account/AccountPage'))
 const Test = lazy(() => import('../../../pages/Test/TestPage'))
 
 //To do!
-const Loading = () : JSX.Element => <p>Loading ...</p>;
+const Loading = (): JSX.Element => <p>Loading ...</p>;
 
 /**
  * Here wwe will storage all the routes
  * @returns 
  */
-const Main = () : JSX.Element => {
+const Main = (): JSX.Element => {
 
     const dispatch = useAppDispatch()
 
-    const getCurrentUser = async () : Promise<void> => {
+    const getCurrentUser = async (): Promise<void> => {
         const dummyCookieID = "1143354135"
 
-        if(!dummyCookieID) {
+        if (!dummyCookieID) {
             //If there is no cookie there is no chance to load this info.
             return
         }
+
+        //TO DO 
+        const readNydUser = dummyNydUser
+        dispatch(setNydProfile(readNydUser))
+
         const readPatientSaludtools = await saludToolsPatientController.readPatient(dummyCookieID)
 
-        if(isApiError(readPatientSaludtools)) {
+        if (isApiError(readPatientSaludtools)) {
             // TO DO - Should not connect, or try again. something is wrong.
             return
         }
 
-        const {body} = readPatientSaludtools
+        const { body } = readPatientSaludtools
         console.log(body)
         dispatch(setSaludtoolsProfile(body))
         return
     }
-  
-    useEffect( () => {
+
+    useEffect(() => {
         getCurrentUser()
     }, [])
 
@@ -55,6 +62,7 @@ const Main = () : JSX.Element => {
                     <Route path={AppRoutes.dashboard.path} element={<Dashboard />} />
                     <Route path={AppRoutes.booking.path} element={<Booking />} />
                     <Route path={AppRoutes.test.path} element={<Test />} />
+                    <Route path={AppRoutes.account.path} element={<Account />} />
                 </Routes>
             </Suspense>
         </Container>

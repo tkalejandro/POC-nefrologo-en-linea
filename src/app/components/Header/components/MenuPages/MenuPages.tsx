@@ -26,7 +26,8 @@ const MenuPages = (): JSX.Element => {
     const pages = [
         RouteName.Dashboard,
         RouteName.Booking,
-        RouteName.Test
+        RouteName.Test,
+        RouteName.Account
     ];
 
     /**
@@ -42,6 +43,8 @@ const MenuPages = (): JSX.Element => {
                 return AppRoutes.booking.path
             case RouteName.Test:
                 return AppRoutes.test.path
+            case RouteName.Account:
+                return AppRoutes.account.path
             default:
                 return AppRoutes.dashboard.path
         }
@@ -55,6 +58,8 @@ const MenuPages = (): JSX.Element => {
                 return 'routeNames.booking'
             case RouteName.Test:
                 return 'routeNames.test'
+            case RouteName.Account:
+                return 'routeNames.account'
         }
     }
 

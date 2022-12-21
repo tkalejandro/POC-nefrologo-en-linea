@@ -40,11 +40,13 @@ const UserInformation = (): JSX.Element => {
                 <Grid item xs={6} lg={6}>
                     <Typography textAlign="center">
                         {t("userInformation.age")}
+                        <Typography ml={1} color='primary' variant='h5' component='span'>27</Typography>
                     </Typography>
                 </Grid>
                 <Grid item xs={6} lg={6}>
                     <Typography textAlign="center">
                         {t("userInformation.height")}
+                        <Typography ml={1} color='primary' variant='h5' component='span'>177 cm</Typography>
                     </Typography>
                 </Grid>
             </Grid>

@@ -8,6 +8,7 @@
 
 export enum RouteName {
     Dashboard = 'dashboard',
+    Account = 'account',
     Booking = 'booking',
     Test = 'test'
 }
@@ -19,6 +20,10 @@ export enum RouteName {
     booking: {
         name: RouteName.Booking,
         path: '/booking',
+    },
+    account: {
+        name: RouteName.Account,
+        path: '/account'
     },
     test: {
         name: RouteName.Test,

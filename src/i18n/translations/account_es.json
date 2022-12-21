@@ -1,0 +1,44 @@
+{
+    "accountStatus": {
+        "title": "Sobre la cuenta",
+        "habeasData": {
+            "description": "Habeas Data aceptado",
+            "successMessage": "Tu has autorizado el uso de tu informacion. Puedes leer mas en nuesta pagina de Politicas de uso.",
+            "errorMessage": "error message"
+        },
+        "verifiedUser": {
+            "description": "Usuario verificado",
+            "successMessage": "success message",
+            "errorMessage": "error message"
+        },
+        "essentialInformation": {
+            "description": "Informacion esencial",
+            "successMessage": "success message",
+            "errorMessage": "error message"
+        },
+        "allowDomiciliary": {
+            "description": "Uso de visita medica a domicilio",
+            "successMessage": "success message",
+            "errorMessage": "error message"
+        }
+    },
+    "myInformation": {
+        "general": {
+            "title": "Informacion general",
+            "documentType": "Documento",
+            "documentNumber": "Identificacion",
+            "firstName": "Nombre",
+            "secondName": "Segundo nombre",
+            "lastName": "Apellido",
+            "secondLastName": "Segundo apellido",
+            "gender": "Genero",
+            "birthDate": "Fecha de nacimiento"
+        },
+        "contact": {
+            "title": "Contacto",
+            "email": "Correo",
+            "countryCode": "Pais",
+            "mobilePhone": "Celular"
+        }
+    }
+}

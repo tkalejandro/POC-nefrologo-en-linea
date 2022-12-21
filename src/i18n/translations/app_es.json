@@ -2,6 +2,7 @@
     "routeNames": {
         "dashboard": "Portal",
         "booking": "Citas",
-        "test": "Test"
+        "test": "Test",
+        "account": "Cuenta"
     }
 }
