@@ -34,6 +34,7 @@ const ContactInformation = ({value, handleChange} : GeneralInformationProps): JS
         <Grid item xs={3} md={1}>
           <TextField
             fullWidth
+            required
             id={MyInformationForm.CountryCode}
             label={t('myInformation.contact.countryCode')}
             value={value.countryCode}
@@ -47,6 +48,16 @@ const ContactInformation = ({value, handleChange} : GeneralInformationProps): JS
             id={MyInformationForm.MobilePhone}
             label={t('myInformation.contact.mobilePhone')}
             value={value.mobile}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            placeholder={t('myInformation.contact.fullAddressPlaceholder') ?? ''}
+            fullWidth
+            id={MyInformationForm.MobilePhone}
+            label={t('myInformation.contact.fullAddress')}
+            value={value.fullAddress}
             onChange={handleChange}
           />
         </Grid>

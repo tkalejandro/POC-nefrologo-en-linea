@@ -57,6 +57,9 @@ const MyInformation = (): JSX.Element | null => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         setValue({ ...value, mobile: event.target.value as any })
         return
+      case MyInformationForm.FullAddress:
+        setValue({ ...value, fullAddress: event.target.value })
+        return
     }
   };
 

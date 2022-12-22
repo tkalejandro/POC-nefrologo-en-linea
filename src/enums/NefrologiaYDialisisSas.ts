@@ -45,6 +45,7 @@ export enum MyInformationForm {
     BirthDate = 'BirthDate',
     Email = 'Email',
     CountryCode = 'CountryCode',
-    MobilePhone = 'MobilePhone'
+    MobilePhone = 'MobilePhone',
+    FullAddress = 'FullAddress'
 
 }

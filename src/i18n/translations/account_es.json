@@ -38,7 +38,9 @@
             "title": "Contacto",
             "email": "Correo",
             "countryCode": "Pais",
-            "mobilePhone": "Celular"
+            "mobilePhone": "Celular",
+            "fullAddress": "Direccion completa",
+            "fullAddressPlaceholder": "Calle 123 #32-10, Cartagena, Colombia"
         }
     }
 }

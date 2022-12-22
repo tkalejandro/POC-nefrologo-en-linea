@@ -87,6 +87,11 @@ interface NydUser extends AuthData {
      * User last login
      */
     lastLogin: Date
+
+    /**
+     * Address that will be use for Domiciliary service
+     */
+    fullAddress?: string
 }
 
 export default NydUser

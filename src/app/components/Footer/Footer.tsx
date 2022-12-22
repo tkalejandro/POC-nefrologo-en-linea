@@ -21,7 +21,7 @@ const Footer = () : JSX.Element => {
     })}>
       <SocialMedia />
       <Copyright />
-      <Typography variant="caption">{address}</Typography>
+      <Typography variant="caption" textAlign="center">{address}</Typography>
       <Box>
         <Typography variant="caption">{phone}</Typography>
         {' '}

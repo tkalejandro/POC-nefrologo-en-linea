@@ -31,7 +31,8 @@ const dummyNydUser: NydUser = {
         lastModifiedDateTime: new Date(),
         type: TypeOfSubscriptions.OneYear,
         appointments: 12
-    }
+    },
+    fullAddress: undefined
 }
 
 export default dummyNydUser

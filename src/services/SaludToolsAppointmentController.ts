@@ -74,10 +74,11 @@ class SaludToolsAppointmentController extends ApiServices {
 
             if (isApiError(authorization)) return authorization
 
+            //It seems Saludtools dont care about appointments date. Even they suggest them in their documantation.
             const today = dayjs()
             const startAppointment = today.format('YYYY-MM-DD')
             const endAppointment = today.add(6, 'month').format('YYYY-MM-DD')
-
+          
             const preRequest : SearchAppointmentRequest = {
                 eventType: SaludToolsEventType.Appointment,
                 actionType: SaludToolsActionType.Search,
@@ -112,7 +113,7 @@ class SaludToolsAppointmentController extends ApiServices {
             if (isError) {
                 return isError
             }
-
+            
             return response
 
         } catch (e) {
