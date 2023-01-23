@@ -1,4 +1,5 @@
-PROTOTYPE ACCEPTED
+PROTOTYPE ACCEPTE
+- ENV removed from VERCEL.
 
 
 # Getting Started with Nefrologo En Linea
