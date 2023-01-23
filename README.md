@@ -1,3 +1,6 @@
+PROTOTYPE ACCEPTED
+
+
 # Getting Started with Nefrologo En Linea
 
 This project is a proof of concept for Nefrologia y Dialisis SAS. Doctor subscription booking appointment.
